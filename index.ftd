@@ -1,57 +1,422 @@
 -- import: fifthtry.github.io/workshop-page/assets
+-- import: fifthtry.github.io/package-doc/doc as pd
+
+
+-- boolean is-mobile: false
+
+-- is-mobile: true
+if: $ftd.device == mobile
+
+-- fpm.toc-item list toc:
+$processor$: toc
+
+- Part 1 - Working With Data
+  - 1 - Hello World: /
+    font-icon: ☑
+    is-disabled: true
+  - 2 - Booleans: /
+    font-icon: ◻
+  - 3 - Numbers And Strings: /
+    font-icon: ◻
+  - 4 - Records: /
+    font-icon: ◻
+  - 5 - Optionals: /
+    font-icon: ◻
 
 
 
--- ds.page: Welcome to your [FPM site](https://fpm.dev/)
-
-FPM Blank Package Template Repo
-
-🧑‍🚀 **Seasoned traveler?** update this file. Enjoy!
 
 
---- ds.image: doc-site
-src: $assets.files.doc-site-example.png
+-- ftd.column:
+width: fill
+padding-horizontal: 20
+padding-vertical: 20
+padding-horizontal if $is-mobile: 20
+background-color: $fpm.color.main.background.base
+
+
+-- pd.package: Workshop Page
+name: fifthtry.github.io/workshop-page
+
+Workshop page is designed using FTD to create workshop activity document. To use
+workshop page follow below instructions.
+
+-- cb.code: Add below lines into your FPM.ftd file
+lang: ftd
+
+\-- fpm.dependency: fifthtry.github.io/workshop-page as ws
+\-- fpm.auto-import: ws
+
+
+-- page: Workshop page
+id: ws-page
+
+Some body content of workshop page.
+
+--- cb.code: Add below lines into your FPM.ftd file
+lang: ftd
+
+\-- ws.page: Page title
+Some body here
+
+--- lesson: What is FPM CLI?
+
+FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
+
+--- cb.code: Add below lines into your FPM.ftd file
+lang: ftd
+
+\-- ws.page: Page title
+Some body here
+
+
+--- task: Install FPM CLI:
+
+FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
+
+-- container: ws-page.right-sidebar
+
+-- ftd.column:
+height: 4000
+spacing: 10
+
+-- cbox.text-1: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-2: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-3: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- ftd.text: this is sidebar
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+
+
+
+
+
+
+
+
+
+
+-- ftd.column page:
+optional caption title:
+optional body body:
+fpm.toc-item list toc: $toc
+width: fill
+open: true
+append-at: page-wrap
+background-image: $assets.files.images.6917-ai.png
+background-color: $fpm.color.main.background.step-1
+gradient-colors: #E7B526, #17C3A6
+gradient-direction: to top
+
+--- ftd.row:
+width: fill
+id: main-row
+spacing: 48
+
+--- render-toc:
+if: $toc is not empty
+toc-obj: $toc
+
+--- container: main-row
+
+--- ftd.column:
+width: fill
+id: page-wrap
+padding-vertical: $fpm.space.space-4
+
+--- tf.h0: $title
+if: $title is not null
+
+$body
+
+--- container: main-row
+
+--- ftd.column:
+id: right-sidebar
+width: 450
+z-index: 999
+sticky: true
+top: 0
+right: 48
+height: calc 100vh - 0px
+background-color:  $fpm.color.main.background.overlay
+overflow-y: auto
+align: top-right
+margin-right: 48
+padding-left: 24
+padding-top: 16
+padding-right: 16
+padding-bottom: 32
+margin-top: 25
+margin-bottom: 25
+border-radius: 8
+border-bottom-radius: 15
+
+
+
+
+
+
+
+
+
+
+-- ftd.column render-toc:
+fpm.toc-item list toc-obj:
+sticky: true
+top: 0
+left: 24
+height: calc 100vh - 0px
+overflow-y: auto
+width: 450
+align: top-left
+background-color:  $fpm.color.main.background.overlay
+border-radius: 8
+padding-left: 24
+padding-top: 16
+padding-right: 16
+padding-bottom: 32
+margin-top: 25
+margin-bottom: 25
+border-bottom-radius: 15
+
+--- toc-instance:
+$loop$: $toc-obj as $obj
+toc: $obj
+
+
+
+
+
+
+
+
+
+
+-- ftd.column toc-instance:
+fpm.toc-item toc:
+id: toc-instance
+
+--- ftd.text:
+if: $toc.url is not null
+link: $toc.url
+text: $toc.title
+role: $fpm.type.fine-print
+min-width: fit-content
+margin-bottom: 16
+color: $fpm.color.main.text
+color if $toc.is-disabled: $fpm.color.main.cta-primary.base
+
+--- ftd.text:
+if: $toc.url is null
+text: $toc.title
+role: $fpm.type.fine-print
+min-width: fit-content
+margin-bottom: 16
+color: $fpm.color.main.text
+color if $toc.is-disabled: $fpm.color.main.cta-primary.base
+padding-left: 10
+
+--- childrens:
+$loop$: $toc.children as $obj
+toc: $obj
+
+
+
+
+
+
+
+
+
+
+-- ftd.column childrens:
+fpm.toc-item toc:
+
+--- ftd.row:
+if: $toc.is-disabled
 width: fill
 
+--- ftd.text: $toc.font-icon
+role: $fpm.type.copy-large
+color: $fpm.color.main.accent.primary
+margin-top: -7
+margin-left: 2
 
---- ds.h1: 🚀 Project Structure
+--- ftd.text: 
+link: $toc.url
+text: $toc.title
+role: $fpm.type.fine-print
+min-width: fit-content
+margin-bottom: 16
+margin-left: $fpm.space.space-3
+color: $fpm.color.main.accent.primary
 
-Inside of your FPM project, you'll see the following folders and files:
+--- container: ftd.main
+
+--- ftd.row:
+if: not $toc.is-disabled
+width: fill
+
+--- ftd.text: $toc.font-icon
+role: $fpm.type.copy-large
+color: $fpm.color.main.text-strong
+margin-top: -7
+
+--- ftd.text: 
+link: $toc.url
+text: $toc.title
+role: $fpm.type.fine-print
+min-width: fit-content
+margin-bottom: 16
+color: $fpm.color.main.text-strong
+margin-left: $fpm.space.space-3
+
+--- container: ftd.main
+
+--- ftd.column:
+margin-left: $fpm.space.space-3
+
+--- childrens:
+$loop$: $toc.children as $obj
+toc: $obj
 
 
---- ds.code:
-lang:
-
-/
-├── .build/
-│   └── index.html
-├── .packages/
-│   └── fifthtry.github.io/
-│   	└── All downloaded dependencies
-│   	
-├── FPM.ftd
-├── index.ftd
-└── README.md
 
 
 
---- ds.h1: 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
---- ds.code:
-lang:
-
-=======================================================================
-| Command                | Action                                     |
-| :--------------------- | :----------------------------------------- |
-| fpm build              | FPM builder installs all `FPM` dependencies|
-| fpm serve              | Starts local dev server at available port  |
-|                        | `localhost:8000`                           |
-=======================================================================
 
 
---- ds.h1: 👀 Want to learn more?
 
-Feel free to check [our documentation](https://fpm.dev/) or jump into our [FifthTry Discord server](https://discord.gg/bucrdvptYd).
 
+
+-- ftd.column task:
+optional caption title:
+optional body body:
+width: fill
+append-at: task-wrap
+margin-top: $fpm.space.space-6
+margin-bottom: $fpm.space.space-6
+padding-vertical: $fpm.space.space-4
+padding-horizontal: $fpm.space.space-4
+border-radius: 6
+background-color: $fpm.color.main.scrim
+padding-top: 0
+open: true
+
+--- ftd.column:
+anchor: parent
+right: 24
+bottom: 24
+
+
+--- button.button: Done
+role: primary
+large: true
+
+--- container: ftd.main
+
+--- ftd.column:
+width: fill
+id: task-wrap
+
+--- ftd.row:
+width: fill
+if: $title is not null
+padding-vertical: $fpm.space.space-3
+color: $fpm.color.main.text-strong
+
+--- ftd.image:
+src: $assets.files.images.task-icon.svg
+width: 32
+height: auto
+align: center
+margin-right: $fpm.space.space-4
+
+--- ftd.text: $title
+role: $fpm.type.heading-large
+color: $fpm.color.main.custom.three
+
+--- container: task-wrap
+
+--- tf.markdown:
+
+$body
+
+--- container: ftd.main
+
+
+
+
+
+
+
+
+
+
+-- ftd.column lesson:
+optional caption title:
+optional body body:
+width: fill
+append-at: lesson-wrap
+margin-top: $fpm.space.space-6
+margin-bottom: $fpm.space.space-6
+padding-vertical: $fpm.space.space-4
+padding-horizontal: $fpm.space.space-4
+border-radius: 6
+background-color: $fpm.color.main.custom.four
+padding-top: 0
+open: true
+
+--- ftd.column:
+anchor: parent
+right: 24
+bottom: 24
+
+
+--- button.button: Understood
+role: primary
+large: true
+
+--- container: ftd.main
+
+--- ftd.column:
+width: fill
+id: lesson-wrap
+
+--- ftd.row:
+width: fill
+if: $title is not null
+padding-vertical: $fpm.space.space-3
+color: $fpm.color.main.text-strong
+
+--- ftd.image:
+src: $assets.files.images.lesson-2-icon.svg
+width: 32
+height: auto
+align: center
+margin-right: $fpm.space.space-4
+
+--- ftd.text: $title
+role: $fpm.type.heading-large
+color: $fpm.color.main.custom.two
+
+--- container: lesson-wrap
+
+--- tf.markdown:
+
+$body
+
+--- container: ftd.main

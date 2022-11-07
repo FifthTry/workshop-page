@@ -1,0 +1,62 @@
+-- import: fifthtry.github.io/workshop-page as ws
+
+
+
+
+
+
+-- ws.page: Workshop page
+toc: $ws.toc
+id: workshop-page
+
+Some body content of workshop page.
+
+--- cb.code: Add below lines into your FPM.ftd file
+lang: ftd
+
+\-- ws.page: Page title
+Some body here
+
+--- ws.lesson: What is FPM CLI?
+
+FPM CLI is used to work with FTD files. 
+
+Learn more about it on fpm.dev
+
+
+--- ws.task: Install FPM CLI:
+
+FPM CLI is used to work with FTD files. 
+
+Learn more about it on fpm.dev
+
+
+-- container: workshop-page.right-sidebar
+
+-- ftd.column:
+height: 4000
+spacing: 10
+
+-- cbox.text-1: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-2: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-3: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-4: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- ftd.text: this is sidebar
+role: $fpm.type.fine-print
+color: $fpm.color.main.text

@@ -3,6 +3,19 @@
 -- fpm.package: fifthtry.github.io/workshop-page
 download-base-url: https://raw.githubusercontent.com/fifthtry/workshop-page/main
 
--- fpm.dependency: fifthtry.github.io/doc-site as ds
+-- fpm.dependency: fifthtry.github.io/night-moon-cs as cs
+-- fpm.dependency: fifthtry.github.io/package-doc as pd
+-- fpm.dependency: fifthtry.github.io/button as button
+-- fpm.dependency: fifthtry.github.io/admonitions as cbox
 
--- fpm.auto-import: ds
+
+
+-- fpm.auto-import: pd
+-- fpm.auto-import: cs
+-- fpm.auto-import: fpm
+-- fpm.auto-import: pd/typography as tf
+-- fpm.auto-import: pd/code-block as cb
+-- fpm.auto-import: pd/forest-theme as ft
+-- fpm.auto-import: button
+-- fpm.auto-import: cbox
+-- fpm.auto-import: fifthtry.github.io/workshop-page/FPM/config
