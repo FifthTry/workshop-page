@@ -198,6 +198,7 @@ id: toc-instance
 
 
 --- ftd.text: 
+if: $toc.url is not null
 link: $toc.url
 text: $toc.title
 role: $fpm.type.fine-print
