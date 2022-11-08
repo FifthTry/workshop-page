@@ -114,7 +114,7 @@ button: what-are-task-button:
 
 FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
--- container: ws-page.wrap-page.right-sidebar
+-- container: ws-page.content-wrap.right-sidebar
 
 -- ftd.column:
 height: 4000
@@ -141,7 +141,7 @@ color: $fpm.color.main.text
 
 
 
--- container: ws-page.wrap-page.right-sidebar-mobile
+-- container: ws-page.content-wrap.right-sidebar-mobile
 
 -- ftd.column:
 height: 4000
@@ -174,7 +174,7 @@ optional body body:
 fpm.toc-item list toc: $sitemap.toc
 width: fill
 open: true
-append-at: wrap-page
+append-at: content-wrap
 boolean $done: $what-are-lesson-understood
 background-image: $assets.files.images.6917-ai.png
 background-color: $fpm.color.main.background.step-1
@@ -184,7 +184,7 @@ boolean sidebar: false
 
 --- page-desktop: $title
 if: not $is-mobile
-id: wrap-page
+id: content-wrap
 body: $body
 $done: $done
 toc: $toc
@@ -193,7 +193,7 @@ right-sidebar: $sidebar
 --- container: ftd.main
 
 --- page-mobile: $title
-id: wrap-page
+id: content-wrap
 if: $is-mobile
 body: $body
 $done: $done
