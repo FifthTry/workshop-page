@@ -3,21 +3,46 @@
 
 
 
--- boolean $what-are-records-understood: false
 
--- object what-are-records-object:
+-- boolean $what-are-lesson-understood: false
+$always-include$: true
+
+-- object what-are-lesson-object:
 function: ls.set-boolean
-variable: $what-are-records-understood
+variable: $what-are-lesson-understood
+
+-- ws.understood what-are-lesson-button: Understood
+$on-click$: toggle $what-are-lesson-understood
+$on-click$: message-host $what-are-lesson-object
 
 
--- ws.understood what-are-records-button:
-$on-click$: toggle $what-are-records-understood
-$on-click$: message-host $what-are-records-object
+
+
+
+
+-- boolean $what-are-task-completed: false
+$always-include$: true
+
+-- object what-are-task-object:
+function: ls.set-boolean
+variable: $what-are-task-completed
+
+-- ws.understood what-are-task-button: Done
+$on-click$: toggle $what-are-task-completed
+$on-click$: message-host $what-are-task-object
+
+
+
+
+
+
+
 
 
 
 -- ws.page: Workshop page
-id: workshop-page
+id: wksp-page
+sidebar: true
 
 Some body content of workshop page.
 
@@ -27,25 +52,41 @@ lang: ftd
 \-- ws.page: Page title
 Some body here
 
--- ftd.boolean: $what-are-records-understood
-
 -- ws.lesson: What is FPM CLI?
-$understood: $what-are-records-understood
-button: what-are-records-button:
+$understood: $what-are-lesson-understood
+button: what-are-lesson-button:
 
 FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
 Learn more about it on fpm.dev
 
+-- cb.code: Add below lines into your FPM.ftd file
+lang: ftd
 
---- ws.task: Install FPM CLI:
+\-- ws.page: Page title
+Some body here
 
-FPM CLI is used to work with FTD files. 
+\-- ws.page: Page title
+Some body here
 
-Learn more about it on fpm.dev
+\-- ws.page: Page title
+Some body here
 
+\-- ws.page: Page title
+Some body here
 
--- container: workshop-page.page-wrap.right-sidebar
+\-- ws.page: Page title
+Some body here
+
+-- container: wksp-page
+
+-- ws.task: Install FPM CLI:
+$completed: $what-are-task-completed
+button: what-are-task-button:
+
+FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
+
+-- container: wksp-page.content-wrap.right-sidebar
 
 -- ftd.column:
 height: 4000
@@ -66,7 +107,27 @@ your lack of ingenuity.
 Of all the things possible, this is what you came up with? I am disappointed in 
 your lack of ingenuity.
 
--- cbox.text-4: Textworthy Heading
+-- ftd.text: this is sidebar
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+
+-- container: wksp-page.content-wrap.right-sidebar-mobile
+
+-- ftd.column:
+height: 4000
+spacing: 10
+
+-- cbox.text-1: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-2: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-3: Textworthy Heading
 
 Of all the things possible, this is what you came up with? I am disappointed in 
 your lack of ingenuity.

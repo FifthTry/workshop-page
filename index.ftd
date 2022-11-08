@@ -7,7 +7,6 @@
 -- is-mobile: true
 if: $ftd.device == mobile
 
-
 -- boolean open-right-sidebar-info: false
 
 -- fpm.sitemap-data sitemap:
@@ -15,32 +14,37 @@ $processor$: sitemap
 
 
 
--- boolean $what-are-lesson-understood: false
 
--- boolean $done: $what-are-lesson-understood
+
+-- boolean $what-are-lesson-understood: false
+$always-include$: true
 
 -- object what-are-lesson-object:
 function: ls.set-boolean
 variable: $what-are-lesson-understood
-
 
 -- understood what-are-lesson-button: Understood
 $on-click$: toggle $what-are-lesson-understood
 $on-click$: message-host $what-are-lesson-object
 
 
+
+
+
 -- boolean $what-are-task-completed: false
-
-
+$always-include$: true
 
 -- object what-are-task-object:
 function: ls.set-boolean
 variable: $what-are-task-completed
 
-
 -- understood what-are-task-button: Done
 $on-click$: toggle $what-are-task-completed
 $on-click$: message-host $what-are-task-object
+
+
+
+
 
 -- ftd.column:
 width: fill
@@ -76,8 +80,6 @@ lang: ftd
 \-- ws.page: Page title
 Some body here
 
--- ftd.boolean: $what-are-lesson-understood
-
 -- lesson: What is FPM CLI?
 $understood: $what-are-lesson-understood
 button: what-are-lesson-button:
@@ -105,8 +107,6 @@ Some body here
 Some body here
 
 -- container: ws-page
-
--- ftd.boolean: $what-are-task-completed
 
 -- task: Install FPM CLI:
 $completed: $what-are-task-completed
@@ -139,8 +139,6 @@ your lack of ingenuity.
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
 
-
-
 -- container: ws-page.content-wrap.right-sidebar-mobile
 
 -- ftd.column:
@@ -168,6 +166,13 @@ color: $fpm.color.main.text
 
 
 
+
+
+
+
+
+
+
 -- ftd.column page:
 optional caption title:
 optional body body:
@@ -175,7 +180,7 @@ fpm.toc-item list toc: $sitemap.toc
 width: fill
 open: true
 append-at: content-wrap
-boolean $done: $what-are-lesson-understood
+boolean $done: false
 background-image: $assets.files.images.6917-ai.png
 background-color: $fpm.color.main.background.step-1
 gradient-colors: #E7B526, #17C3A6
@@ -201,6 +206,14 @@ toc: $toc
 right-sidebar: $sidebar
 
 
+
+
+
+
+
+
+
+
 -- ftd.column page-desktop:
 optional caption title:
 optional body body:
@@ -210,7 +223,6 @@ open: true
 append-at: wrap-page-one
 boolean $done:
 boolean right-sidebar: false 
-
 
 --- ftd.row:
 width: fill
@@ -263,6 +275,9 @@ border-bottom-radius: 15
 
 
 
+
+
+
 -- ftd.column page-mobile:
 optional caption title:
 optional body body:
@@ -273,12 +288,9 @@ append-at: page-wrap-mobile
 boolean $done: 
 booelan right-sidebar: false
 
-
-
 --- ftd.column:
 width: fill
 id: main-row
-
 
 --- ftd.column:
 id: page-wrap-mobile
@@ -291,7 +303,6 @@ padding-vertical: 20
 --- ftd.row:
 width: fill
 id: heading-container
-
 
 --- tf.h1: $title
 if: $title is not null
@@ -328,7 +339,6 @@ background-color:  $fpm.color.main.background.overlay
 z-index: 1
 width: fill
 $on-click$: $open-right-sidebar-info = false
-
 
 --- ftd.column:
 width: fill
@@ -367,6 +377,10 @@ padding-horizontal: 24
 
 
 
+
+
+
+
 -- ftd.column render-toc:
 fpm.toc-item list toc-obj:
 sticky: true
@@ -386,7 +400,6 @@ boolean $done:
 margin-top: 25
 margin-bottom: 25
 border-bottom-radius: 15
-
 
 --- toc-instance:
 $loop$: $toc-obj as $obj
@@ -416,9 +429,6 @@ min-width: fit-content
 margin-bottom: 16
 ;margin-left: $fpm.space.space-3
 color: $fpm.color.main.accent.primary
-
-
-
 
 --- ftd.text:
 if: $toc.url is null
@@ -450,7 +460,7 @@ boolean $done: $what-are-lesson-understood
 
 --- ftd.row:
 width: fill
-id: jj
+id: toc-container
 
 --- ftd.image: 
 if: $done
@@ -459,8 +469,7 @@ margin-top: 0
 margin-left: 2
 width: 14
 
-
---- container: jj
+--- container: toc-container
 
 --- ftd.image: 
 if: not $done
@@ -469,7 +478,7 @@ margin-top: 0
 margin-left: 2
 width: 14
 
---- container: jj
+--- container: toc-container
 
 --- ftd.text: 
 link: $toc.url
@@ -479,7 +488,6 @@ min-width: fit-content
 margin-bottom: 16
 margin-left: $fpm.space.space-3
 color: $fpm.color.main.accent.primary
-
 
 --- container: ftd.main
 
@@ -514,18 +522,12 @@ background-color: $fpm.color.main.scrim
 padding-top: 0
 open: true
 
-
 --- ftd.column:
 anchor: parent
 right: 24
 bottom: 24
 
-
 --- button: 
-
-
---- container: ftd.main
-
 
 --- container: ftd.main
 
@@ -585,9 +587,7 @@ anchor: parent
 right: 24
 bottom: 24
 
-
 --- button: 
-
 
 --- container: ftd.main
 
@@ -627,17 +627,6 @@ $body
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 -- ftd.text understood: $title
 caption title:
 padding-vertical: 8
@@ -647,4 +636,3 @@ background-color: $fpm.color.main.cta-primary.hover
 background-color if $MOUSE-IN: $fpm.color.main.cta-primary.base
 role: $fpm.type.copy-large
 color: $fpm.color.main.text-strong
-
