@@ -7,25 +7,40 @@
 -- is-mobile: true
 if: $ftd.device == mobile
 
--- fpm.toc-item list toc:
-$processor$: toc
 
-- Part 1 - Working With Data
-  - 1 - Hello World: /
-    font-icon: ☑
-    is-disabled: true
-  - 2 - Booleans: /
-    font-icon: ◻
-  - 3 - Numbers And Strings: /
-    font-icon: ◻
-  - 4 - Records: /
-    font-icon: ◻
-  - 5 - Optionals: /
-    font-icon: ◻
+-- boolean open-right-sidebar-info: false
+
+-- fpm.sitemap-data sitemap:
+$processor$: sitemap
 
 
 
+-- boolean $what-are-lesson-understood: false
 
+-- boolean $done: $what-are-lesson-understood
+
+-- object what-are-lesson-object:
+function: ls.set-boolean
+variable: $what-are-lesson-understood
+
+
+-- understood what-are-lesson-button: Understood
+$on-click$: toggle $what-are-lesson-understood
+$on-click$: message-host $what-are-lesson-object
+
+
+-- boolean $what-are-task-completed: false
+
+
+
+-- object what-are-task-object:
+function: ls.set-boolean
+variable: $what-are-task-completed
+
+
+-- understood what-are-task-button: Done
+$on-click$: toggle $what-are-task-completed
+$on-click$: message-host $what-are-task-object
 
 -- ftd.column:
 width: fill
@@ -33,7 +48,7 @@ padding-horizontal: 20
 padding-vertical: 20
 padding-horizontal if $is-mobile: 20
 background-color: $fpm.color.main.background.base
-
+id: pd-wrap
 
 -- pd.package: Workshop Page
 name: fifthtry.github.io/workshop-page
@@ -47,34 +62,59 @@ lang: ftd
 \-- fpm.dependency: fifthtry.github.io/workshop-page as ws
 \-- fpm.auto-import: ws
 
+-- container: pd-wrap
 
 -- page: Workshop page
 id: ws-page
+sidebar: true
 
 Some body content of workshop page.
 
---- cb.code: Add below lines into your FPM.ftd file
+-- cb.code: Add below lines into your FPM.ftd file
 lang: ftd
 
 \-- ws.page: Page title
 Some body here
 
---- lesson: What is FPM CLI?
+-- ftd.boolean: $what-are-lesson-understood
+
+-- lesson: What is FPM CLI?
+$understood: $what-are-lesson-understood
+button: what-are-lesson-button:
 
 FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
---- cb.code: Add below lines into your FPM.ftd file
+Learn more about it on fpm.dev
+
+-- cb.code: Add below lines into your FPM.ftd file
 lang: ftd
 
 \-- ws.page: Page title
 Some body here
 
+\-- ws.page: Page title
+Some body here
 
---- task: Install FPM CLI:
+\-- ws.page: Page title
+Some body here
+
+\-- ws.page: Page title
+Some body here
+
+\-- ws.page: Page title
+Some body here
+
+-- container: ws-page
+
+-- ftd.boolean: $what-are-task-completed
+
+-- task: Install FPM CLI:
+$completed: $what-are-task-completed
+button: what-are-task-button:
 
 FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
--- container: ws-page.right-sidebar
+-- container: ws-page.wrap-page.right-sidebar
 
 -- ftd.column:
 height: 4000
@@ -101,24 +141,76 @@ color: $fpm.color.main.text
 
 
 
+-- container: ws-page.wrap-page.right-sidebar-mobile
 
+-- ftd.column:
+height: 4000
+spacing: 10
 
+-- cbox.text-1: Textworthy Heading
 
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
 
+-- cbox.text-2: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-3: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- ftd.text: this is sidebar
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
 
 
 
 -- ftd.column page:
 optional caption title:
 optional body body:
-fpm.toc-item list toc: $toc
+fpm.toc-item list toc: $sitemap.toc
 width: fill
 open: true
-append-at: page-wrap
+append-at: wrap-page
+boolean $done: $what-are-lesson-understood
 background-image: $assets.files.images.6917-ai.png
 background-color: $fpm.color.main.background.step-1
 gradient-colors: #E7B526, #17C3A6
 gradient-direction: to top
+boolean sidebar: false
+
+--- page-desktop: $title
+if: not $is-mobile
+id: wrap-page
+body: $body
+$done: $done
+toc: $toc
+right-sidebar: $sidebar
+
+--- container: ftd.main
+
+--- page-mobile: $title
+id: wrap-page
+if: $is-mobile
+body: $body
+$done: $done
+toc: $toc
+right-sidebar: $sidebar
+
+
+-- ftd.column page-desktop:
+optional caption title:
+optional body body:
+fpm.toc-item list toc:
+width: fill
+open: true
+append-at: wrap-page-one
+boolean $done:
+boolean right-sidebar: false 
+
 
 --- ftd.row:
 width: fill
@@ -128,12 +220,13 @@ spacing: 48
 --- render-toc:
 if: $toc is not empty
 toc-obj: $toc
+$done: $done
 
 --- container: main-row
 
 --- ftd.column:
 width: fill
-id: page-wrap
+id: wrap-page-one
 padding-vertical: $fpm.space.space-4
 
 --- tf.h0: $title
@@ -170,6 +263,107 @@ border-bottom-radius: 15
 
 
 
+-- ftd.column page-mobile:
+optional caption title:
+optional body body:
+fpm.toc-item list toc: 
+width: fill
+open: true
+append-at: page-wrap-mobile
+boolean $done: 
+booelan right-sidebar: false
+
+
+
+--- ftd.column:
+width: fill
+id: main-row
+
+
+--- ftd.column:
+id: page-wrap-mobile
+width: fill
+align: top
+min-height: calc 100vh
+padding-horizontal: 20
+padding-vertical: 20
+
+--- ftd.row:
+width: fill
+id: heading-container
+
+
+--- tf.h1: $title
+if: $title is not null
+
+--- container: heading-container
+
+--- ftd.column:
+if: $right-sidebar
+align: center
+padding-top: $fpm.space.space-2
+
+--- ftd.image:
+src: $assets.files.images.info-icon.svg
+width: 36
+$on-click$: toggle $open-right-sidebar-info
+
+--- container: page-wrap-mobile
+
+--- tf.markdown:
+if: $body is not null
+
+$body
+
+--- container: main-row
+
+--- ftd.column:
+if: $open-right-sidebar-info
+anchor: parent
+top: 0
+bottom: 0
+left: 0
+right: 0
+background-color:  $fpm.color.main.background.overlay
+z-index: 1
+width: fill
+$on-click$: $open-right-sidebar-info = false
+
+
+--- ftd.column:
+width: fill
+
+--- ftd.image:
+src: $assets.files.images.cross.svg
+height: 16
+width: auto
+margin-top: 30
+margin-left: 16
+$on-click$: $open-right-sidebar-info = false 
+
+--- container: main-row
+
+--- ftd.column:
+if: $open-right-sidebar-info
+width: calc 100% - 48px
+height: calc 100vh - 0px
+overflow-y: auto
+align: top-right
+padding-top:$fpm.space.space-5
+anchor: parent
+right: 0
+top: 0
+background-color: $fpm.color.main.background.step-1
+z-index: 1
+
+--- ftd.column:
+id: right-sidebar-mobile
+width: fill
+padding-vertical: 24
+padding-horizontal: 24
+
+
+
 
 
 
@@ -188,13 +382,16 @@ padding-left: 24
 padding-top: 16
 padding-right: 16
 padding-bottom: 32
+boolean $done: 
 margin-top: 25
 margin-bottom: 25
 border-bottom-radius: 15
 
+
 --- toc-instance:
 $loop$: $toc-obj as $obj
 toc: $obj
+$done: $done
 
 
 
@@ -208,16 +405,20 @@ toc: $obj
 -- ftd.column toc-instance:
 fpm.toc-item toc:
 id: toc-instance
+boolean $done: 
 
---- ftd.text:
+--- ftd.text: 
 if: $toc.url is not null
 link: $toc.url
 text: $toc.title
 role: $fpm.type.fine-print
 min-width: fit-content
 margin-bottom: 16
-color: $fpm.color.main.text
-color if $toc.is-disabled: $fpm.color.main.cta-primary.base
+;margin-left: $fpm.space.space-3
+color: $fpm.color.main.accent.primary
+
+
+
 
 --- ftd.text:
 if: $toc.url is null
@@ -232,6 +433,7 @@ padding-left: 10
 --- childrens:
 $loop$: $toc.children as $obj
 toc: $obj
+$done: $done
 
 
 
@@ -244,16 +446,30 @@ toc: $obj
 
 -- ftd.column childrens:
 fpm.toc-item toc:
+boolean $done: $what-are-lesson-understood
 
 --- ftd.row:
-if: $toc.is-disabled
 width: fill
+id: jj
 
---- ftd.text: $toc.font-icon
-role: $fpm.type.copy-large
-color: $fpm.color.main.accent.primary
-margin-top: -7
+--- ftd.image: 
+if: $done
+src: $assets.files.images.checked.svg
+margin-top: 0
 margin-left: 2
+width: 14
+
+
+--- container: jj
+
+--- ftd.image: 
+if: not $done
+src: $assets.files.images.unchecked.svg
+margin-top: 0
+margin-left: 2
+width: 14
+
+--- container: jj
 
 --- ftd.text: 
 link: $toc.url
@@ -264,25 +480,6 @@ margin-bottom: 16
 margin-left: $fpm.space.space-3
 color: $fpm.color.main.accent.primary
 
---- container: ftd.main
-
---- ftd.row:
-if: not $toc.is-disabled
-width: fill
-
---- ftd.text: $toc.font-icon
-role: $fpm.type.copy-large
-color: $fpm.color.main.text-strong
-margin-top: -7
-
---- ftd.text: 
-link: $toc.url
-text: $toc.title
-role: $fpm.type.fine-print
-min-width: fit-content
-margin-bottom: 16
-color: $fpm.color.main.text-strong
-margin-left: $fpm.space.space-3
 
 --- container: ftd.main
 
@@ -307,6 +504,7 @@ optional caption title:
 optional body body:
 width: fill
 append-at: task-wrap
+ftd.ui button:
 margin-top: $fpm.space.space-6
 margin-bottom: $fpm.space.space-6
 padding-vertical: $fpm.space.space-4
@@ -316,15 +514,18 @@ background-color: $fpm.color.main.scrim
 padding-top: 0
 open: true
 
+
 --- ftd.column:
 anchor: parent
 right: 24
 bottom: 24
 
 
---- button.button: Done
-role: primary
-large: true
+--- button: 
+
+
+--- container: ftd.main
+
 
 --- container: ftd.main
 
@@ -355,8 +556,6 @@ color: $fpm.color.main.custom.three
 
 $body
 
---- container: ftd.main
-
 
 
 
@@ -371,6 +570,7 @@ optional caption title:
 optional body body:
 width: fill
 append-at: lesson-wrap
+ftd.ui button:
 margin-top: $fpm.space.space-6
 margin-bottom: $fpm.space.space-6
 padding-vertical: $fpm.space.space-4
@@ -386,9 +586,8 @@ right: 24
 bottom: 24
 
 
---- button.button: Understood
-role: primary
-large: true
+--- button: 
+
 
 --- container: ftd.main
 
@@ -419,4 +618,33 @@ color: $fpm.color.main.custom.two
 
 $body
 
---- container: ftd.main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- ftd.text understood: $title
+caption title:
+padding-vertical: 8
+padding-horizontal: 16
+border-radius: 5
+background-color: $fpm.color.main.cta-primary.hover
+background-color if $MOUSE-IN: $fpm.color.main.cta-primary.base
+role: $fpm.type.copy-large
+color: $fpm.color.main.text-strong
+

@@ -3,23 +3,37 @@
 
 
 
+-- boolean $what-are-records-understood: false
+
+-- object what-are-records-object:
+function: ls.set-boolean
+variable: $what-are-records-understood
+
+
+-- ws.understood what-are-records-button:
+$on-click$: toggle $what-are-records-understood
+$on-click$: message-host $what-are-records-object
+
 
 
 -- ws.page: Workshop page
-toc: $ws.toc
 id: workshop-page
 
 Some body content of workshop page.
 
---- cb.code: Add below lines into your FPM.ftd file
+-- cb.code: Add below lines into your FPM.ftd file
 lang: ftd
 
 \-- ws.page: Page title
 Some body here
 
---- ws.lesson: What is FPM CLI?
+-- ftd.boolean: $what-are-records-understood
 
-FPM CLI is used to work with FTD files. 
+-- ws.lesson: What is FPM CLI?
+$understood: $what-are-records-understood
+button: what-are-records-button:
+
+FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
 Learn more about it on fpm.dev
 
@@ -31,7 +45,7 @@ FPM CLI is used to work with FTD files.
 Learn more about it on fpm.dev
 
 
--- container: workshop-page.right-sidebar
+-- container: workshop-page.page-wrap.right-sidebar
 
 -- ftd.column:
 height: 4000
