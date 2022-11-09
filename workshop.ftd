@@ -35,14 +35,32 @@ $on-click$: message-host $what-are-task-object
 
 
 
+-- boolean $what-are-chapter-completed: false
+$always-include$: true
+
+-- object what-are-chapter-object:
+function: ls.set-boolean
+variable: $what-are-chapter-completed
+
+-- ws.understood what-are-chapter-button: Completed
+$on-click$: toggle $what-are-chapter-completed
+$on-click$: message-host $what-are-chapter-object
+$chapter-status: $what-are-chapter-completed
 
 
 
 
 
--- ws.page: Workshop page
+
+
+
+
+
+-- ws.chapter: Workshop page
 id: wksp-page
 sidebar: true
+button: what-are-chapter-button:
+$status: $what-are-chapter-completed
 
 Some body content of workshop page.
 
