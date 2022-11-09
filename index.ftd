@@ -3,6 +3,7 @@
 
 
 -- boolean is-mobile: false
+-- boolean show-section: false
 
 -- is-mobile: true
 if: $ftd.device == mobile
@@ -334,6 +335,65 @@ bottom: 24
 width: fill
 id: main-row
 
+--- ftd.row:
+width: fill
+background-color: $fpm.color.main.background.step-2
+id: change-container
+padding-horizontal: $fpm.space.space-5
+$on-click$: toggle $show-section 
+padding-vertical: 12
+
+--- ftd.row:
+width: fill
+
+--- container: change-container
+
+--- ftd.row:
+align: right
+height: fill
+
+--- ftd.row:
+align: center
+width: fill
+
+--- ftd.image: 
+if: not $show-section 
+src: $assets.files.images.down-arrow.svg
+height: auto
+width: 12
+
+--- ftd.image: 
+if:  $show-section 
+src: $assets.files.images.up-arrow.svg
+height: auto
+width: 12
+
+
+--- container: change-container
+
+--- ftd.column: 
+if: $show-section
+width: fill
+anchor: parent
+background-color: $fpm.color.main.background.step-2
+top: 32
+left:0
+
+
+--- ftd.column:
+width: fill
+spacing: 8
+padding-vertical: 12
+padding-horizontal: 24
+overflow-x: auto
+
+--- render-toc-mobile:
+if: $toc is not empty
+toc-obj: $toc
+$status: $status
+
+--- container: main-row
+
 --- ftd.column:
 id: page-wrap-mobile
 width: fill
@@ -341,7 +401,8 @@ align: top
 min-height: calc 100vh
 height: fill
 padding-horizontal: 20
-padding-vertical: 20
+padding-top: 20
+padding-bottom: 84
 
 --- ftd.row:
 width: fill
@@ -679,9 +740,21 @@ padding-vertical: 8
 padding-horizontal: 16
 border-radius: 5
 background-color: $fpm.color.main.cta-primary.hover
-;background-color if $MOUSE-IN: $fpm.color.main.cta-primary.base
+background-color if $MOUSE-IN: $fpm.color.main.cta-primary.base
 role: $fpm.type.copy-large
 color: $fpm.color.main.text-strong
 background-color if $lesson-status: $fpm.color.main.border
 background-color if $task-status: $fpm.color.main.border
 background-color if $chapter-status: $fpm.color.main.border
+
+
+-- ftd.column render-toc-mobile: 
+fpm.toc-item list toc-obj:
+boolean $status: 
+
+
+
+--- toc-instance:
+$loop$: $toc-obj as $obj
+toc: $obj
+$status: $status
