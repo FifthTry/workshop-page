@@ -1,8 +1,3 @@
--- import: fifthtry.github.io/workshop-page as ws
-
-
-
-
 
 -- boolean $what-are-lesson-understood: false
 $always-include$: true
@@ -11,11 +6,24 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-lesson-understood
 
--- ws.understood what-are-lesson-button: Understood
+-- understood what-are-lesson-button: Understood
 $on-click$: toggle $what-are-lesson-understood
 $on-click$: message-host $what-are-lesson-object
+$lesson-status: $what-are-lesson-understood
 
 
+-- boolean $what-are-chapter-completed: false
+$always-include$: true
+
+
+-- object what-are-chapter-object:
+function: ls.set-boolean
+variable: $what-are-chapter-completed
+
+-- understood what-are-chapter-button: Completed
+$on-click$: toggle $what-are-chapter-completed
+$on-click$: message-host $what-are-chapter-object
+$lesson-status: $what-are-chapter-completed
 
 
 
@@ -27,39 +35,16 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-task-completed
 
--- ws.understood what-are-task-button: Done
+-- understood what-are-task-button: Done
 $on-click$: toggle $what-are-task-completed
 $on-click$: message-host $what-are-task-object
+$task-status: $what-are-task-completed
 
 
 
-
-
--- boolean $what-are-chapter-completed: false
-$always-include$: true
-
--- object what-are-chapter-object:
-function: ls.set-boolean
-variable: $what-are-chapter-completed
-
--- ws.understood what-are-chapter-button: Completed
-$on-click$: toggle $what-are-chapter-completed
-$on-click$: message-host $what-are-chapter-object
-$chapter-status: $what-are-chapter-completed
-
-
-
-
-
-
-
-
-
-
--- ws.chapter: Workshop page
-id: wksp-page
+-- chapter: Workshop page
+id: wp-page
 sidebar: true
-button: what-are-chapter-button:
 $status: $what-are-chapter-completed
 
 Some body content of workshop page.
@@ -70,7 +55,7 @@ lang: ftd
 \-- ws.page: Page title
 Some body here
 
--- ws.lesson: What is FPM CLI?
+-- lesson: What is FPM CLI?
 $understood: $what-are-lesson-understood
 button: what-are-lesson-button:
 
@@ -96,15 +81,15 @@ Some body here
 \-- ws.page: Page title
 Some body here
 
--- container: wksp-page
+-- container: wp-page
 
--- ws.task: Install FPM CLI:
+-- task: Install FPM CLI:
 $completed: $what-are-task-completed
 button: what-are-task-button:
 
 FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
--- container: wksp-page.content-wrap.right-sidebar
+-- container: wp-page.content-wrap.right-sidebar
 
 -- ftd.column:
 height: 4000
@@ -129,7 +114,7 @@ your lack of ingenuity.
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
 
--- container: wksp-page.content-wrap.right-sidebar-mobile
+-- container: wp-page.content-wrap.right-sidebar-mobile
 
 -- ftd.column:
 height: 4000

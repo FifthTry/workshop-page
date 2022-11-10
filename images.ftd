@@ -1,0 +1,43 @@
+
+-- boolean $what-are-images-completed: false
+$always-include$: true
+
+-- object what-are-images-object:
+function: ls.set-boolean
+variable: $what-are-images-completed
+
+-- ws.understood what-are-images-button: Completed
+$on-click$: toggle $what-are-images-completed
+$on-click$: message-host $what-are-images-object
+$chapter-status: $what-are-images-object
+
+-- ds.chapter: Images In FTD
+id: ws-images
+sidebar: true
+button: what-are-hello-world-button:
+$status: $what-are-hello-world-completed
+
+-- container: ws-images.content-wrap.right-sidebar-mobile
+
+-- ftd.column:
+height: 4000
+spacing: 10
+
+-- cbox.text-1: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-2: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-3: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- ftd.text: this is sidebar
+role: $fpm.type.fine-print
+color: $fpm.color.main.text

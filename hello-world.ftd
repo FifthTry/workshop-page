@@ -1,0 +1,59 @@
+-- import: fifthtry.github.io/workshop-page as ws
+
+
+-- boolean $what-are-hello-world-completed: false
+$always-include$: true
+
+-- object what-are-hello-world-object:
+function: ls.set-boolean
+variable: $what-are-hello-world-completed
+
+-- ws.understood what-are-hello-world-button: Completed
+$on-click$: toggle $what-are-hello-world-completed
+$on-click$: message-host $what-are-hello-world-object
+$chapter-status: $what-are-hello-world-completed
+
+
+
+-- ws.chapter: Hello World
+id: ws-hello-world
+sidebar: true
+button: what-are-hello-world-button:
+$status: $what-are-hello-world-completed
+
+To use [FTD](https://ftd.dev) language we have to use [FPM](https://fpm.dev)
+the package manager and server for FTD.
+
+In this exercise **we will install FPM, and run a hello world program**.
+
+
+-- ft.h1: You are Done
+
+-- ft.markdown:
+
+You have installed fpm and created your first fpm package. Good job!
+
+-- container: ws-hello-world.content-wrap.right-sidebar
+
+-- ftd.column:
+width: fill
+
+--- cbox.text-4: Need Help?
+
+Please join our [Discord to ask any questions](https://discord.gg/d2MgKBybEQ)
+related to this workshop!
+
+Or just meet the others who are learning FTD like you :-)
+
+
+--- cbox.info: Github Repo
+
+The code for this workshop can be found on Github:
+[ftd-lang/ftd-workshop](https://github.com/ftd-lang/ftd-workshop).
+
+
+--- cbox.text-4: Join The Next Session
+
+The next remote workshop would be happening on **4th Nov 2022**. [Learn more
+here](https://fifthtry.com/events/).
+
