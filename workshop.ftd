@@ -1,3 +1,5 @@
+-- import: fifthtry.github.io/workshop-page as ws
+
 
 -- boolean $what-are-lesson-understood: false
 $always-include$: true
@@ -6,7 +8,7 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-lesson-understood
 
--- understood what-are-lesson-button: Understood
+-- ws.understood what-are-lesson-button: Understood
 $on-click$: toggle $what-are-lesson-understood
 $on-click$: message-host $what-are-lesson-object
 $lesson-status: $what-are-lesson-understood
@@ -20,7 +22,7 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-chapter-completed
 
--- understood what-are-chapter-button: Completed
+-- ws.understood what-are-chapter-button: Completed
 $on-click$: toggle $what-are-chapter-completed
 $on-click$: message-host $what-are-chapter-object
 $lesson-status: $what-are-chapter-completed
@@ -35,14 +37,14 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-task-completed
 
--- understood what-are-task-button: Done
+-- ws.understood what-are-task-button: Done
 $on-click$: toggle $what-are-task-completed
 $on-click$: message-host $what-are-task-object
 $task-status: $what-are-task-completed
 
 
 
--- chapter: Workshop page
+-- ws.chapter: Workshop page
 id: wp-page
 sidebar: true
 $status: $what-are-chapter-completed
@@ -55,7 +57,7 @@ lang: ftd
 \-- ws.page: Page title
 Some body here
 
--- lesson: What is FPM CLI?
+-- ws.lesson: What is FPM CLI?
 $understood: $what-are-lesson-understood
 button: what-are-lesson-button:
 
@@ -83,7 +85,7 @@ Some body here
 
 -- container: wp-page
 
--- task: Install FPM CLI:
+-- ws.task: Install FPM CLI:
 $completed: $what-are-task-completed
 button: what-are-task-button:
 
@@ -91,50 +93,8 @@ FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
 -- container: wp-page.content-wrap.right-sidebar
 
--- ftd.column:
-height: 4000
-spacing: 10
-
--- cbox.text-1: Textworthy Heading
-
-Of all the things possible, this is what you came up with? I am disappointed in 
-your lack of ingenuity.
-
--- cbox.text-2: Textworthy Heading
-
-Of all the things possible, this is what you came up with? I am disappointed in 
-your lack of ingenuity.
-
--- cbox.text-3: Textworthy Heading
-
-Of all the things possible, this is what you came up with? I am disappointed in 
-your lack of ingenuity.
-
--- ftd.text: this is sidebar
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
+-- sidebar:
 
 -- container: wp-page.content-wrap.right-sidebar-mobile
 
--- ftd.column:
-height: 4000
-spacing: 10
-
--- cbox.text-1: Textworthy Heading
-
-Of all the things possible, this is what you came up with? I am disappointed in 
-your lack of ingenuity.
-
--- cbox.text-2: Textworthy Heading
-
-Of all the things possible, this is what you came up with? I am disappointed in 
-your lack of ingenuity.
-
--- cbox.text-3: Textworthy Heading
-
-Of all the things possible, this is what you came up with? I am disappointed in 
-your lack of ingenuity.
-
--- ftd.text: this is sidebar
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
+-- sidebar:
