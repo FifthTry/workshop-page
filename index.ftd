@@ -1,6 +1,6 @@
 -- import: fifthtry.github.io/workshop-page/assets
 -- import: fifthtry.github.io/package-doc/doc as pd
-
+-- import: fifthtry.github.io/workshop-page/header as h
 
 -- boolean is-mobile: false
 -- boolean show-section: false
@@ -15,6 +15,14 @@ $processor$: sitemap
 
 
 
+
+-- optional string site-name: 
+
+-- optional ftd.image-src site-logo:
+dark: $assets.files.images.site-icon.svg.dark
+light: $assets.files.images.site-icon.svg.light
+
+-- string site-url: NA
 
 
 -- boolean $what-are-lesson-understood: false
@@ -59,29 +67,6 @@ $on-click$: message-host $what-are-task-object
 $task-status: $what-are-task-completed
 
 
-
-
--- ftd.column:
-width: fill
-padding-horizontal: 20
-padding-vertical: 20
-padding-horizontal if $is-mobile: 20
-background-color: $fpm.color.main.background.base
-id: pd-wrap
-
--- pd.package: Workshop Page
-name: fifthtry.github.io/workshop-page
-
-Workshop page is designed using FTD to create workshop activity document. To use
-workshop page follow below instructions.
-
--- cb.code: Add below lines into your FPM.ftd file
-lang: ftd
-
-\-- fpm.dependency: fifthtry.github.io/workshop-page as ws
-\-- fpm.auto-import: ws
-
--- container: pd-wrap
 
 -- chapter: Workshop page
 id: ws-page
@@ -192,6 +177,11 @@ color: $fpm.color.main.text
 optional caption title:
 optional body body:
 fpm.toc-item list toc: $sitemap.toc
+fpm.toc-item list sections: $sitemap.sections
+fpm.toc-item list sub-sections: $sitemap.subsections
+optional fpm.toc-item current-section: $sitemap.current-section
+optional fpm.toc-item current-subsection: $sitemap.current-subsection
+optional fpm.toc-item current-page: $sitemap.current-page
 ftd.ui button: what-are-chapter-button: 
 width: fill
 open: true
@@ -210,6 +200,11 @@ button: $button
 body: $body
 $status: $status
 toc: $toc
+sections: $sections
+current-section: $current-section
+current-subsection: $current-subsection
+current-page: $current-page
+sub-sections: $sub-sections
 right-sidebar: $sidebar
 
 --- container: ftd.main
@@ -221,6 +216,11 @@ body: $body
 button: $button
 $status: $status
 toc: $toc
+sections: $sections
+current-section: $current-section
+current-subsection: $current-subsection
+current-page: $current-page
+sub-sections: $sub-sections
 right-sidebar: $sidebar
 
 
@@ -236,12 +236,30 @@ right-sidebar: $sidebar
 optional caption title:
 optional body body:
 fpm.toc-item list toc:
+fpm.toc-item list sections:
+fpm.toc-item list sub-sections:
+optional fpm.toc-item current-section:
+optional fpm.toc-item current-page:
+optional fpm.toc-item current-subsection:
 ftd.ui button:
 width: fill
 open: true
 append-at: wrap-page-one
 boolean $status:
 boolean right-sidebar: false 
+
+--- h.header: 
+sections: $sections
+sub-sections: $sub-sections
+current-section: $current-section
+current-subsection: $current-subsection
+current-page: $current-page
+site-logo: $site-logo
+site-url: $site-url
+site-name: $site-name
+
+
+--- container: ftd.main
 
 --- ftd.row:
 width: fill
@@ -315,6 +333,11 @@ border-bottom-radius: 15
 optional caption title:
 optional body body:
 fpm.toc-item list toc: 
+fpm.toc-item list sections:
+fpm.toc-item list sub-sections:
+optional fpm.toc-item current-section:
+optional fpm.toc-item current-page:
+optional fpm.toc-item current-subsection:
 ftd.ui button:
 width: fill
 open: true
@@ -322,12 +345,25 @@ append-at: page-wrap-mobile
 boolean $status: 
 booelan right-sidebar: false
 
+--- h.header: 
+sections: $sections
+sub-sections: $sub-sections
+current-section: $current-section
+current-subsection: $current-subsection
+current-page: $current-page
+site-logo: $site-logo
+site-url: $site-url
+header-toc: $toc
+site-name: $site-name
+
 --- ftd.column:
 anchor: parent
 right: 24
 bottom: 24
 
 --- button: 
+
+--- container: ftd.main
 
 --- container: ftd.main
 
@@ -341,10 +377,41 @@ background-color: $fpm.color.main.background.step-2
 id: change-container
 padding-horizontal: $fpm.space.space-5
 $on-click$: toggle $show-section 
-padding-vertical: 12
+;padding-vertical: 12
 
 --- ftd.row:
 width: fill
+padding-vertical: $fpm.space.space-4
+spacing: 4
+id: selection-container
+
+--- ftd.text: $current-subsection.title
+if: $current-subsection.title is not null
+role: $fpm.type.label-small
+color: $fpm.color.main.text-strong
+link: $current-subsection.url
+white-space: nowrap
+
+--- ftd.row:
+if: $current-subsection.title is not null
+
+--- ftd.row:
+if: $current-page.title is not null
+
+--- ftd.text: ->
+role: $fpm.type.label-small
+color: $fpm.color.main.text-strong
+white-space: nowrap
+
+--- container: selection-container
+
+--- ftd.text: $current-page.title 
+if:  $current-page.title is not null
+role: $fpm.type.label-small
+color: $fpm.color.main.text-strong
+link: $current-page.url 
+white-space: nowrap
+
 
 --- container: change-container
 
@@ -376,15 +443,16 @@ if: $show-section
 width: fill
 anchor: parent
 background-color: $fpm.color.main.background.step-2
-top: 32
+top: 48
 left:0
+z-index: 109
 
 
 --- ftd.column:
 width: fill
 spacing: 8
-padding-vertical: 12
 padding-horizontal: 24
+padding-vertical: 12
 overflow-x: auto
 
 --- render-toc-mobile:
@@ -393,6 +461,7 @@ toc-obj: $toc
 $status: $status
 
 --- container: main-row
+
 
 --- ftd.column:
 id: page-wrap-mobile
@@ -403,6 +472,7 @@ height: fill
 padding-horizontal: 20
 padding-top: 20
 padding-bottom: 84
+z-index: 99
 
 --- ftd.row:
 width: fill
@@ -430,7 +500,7 @@ if: $body is not null
 
 $body
 
---- container: main-row
+--- container: ftd.main
 
 --- ftd.column:
 if: $open-right-sidebar-info
@@ -455,7 +525,7 @@ margin-top: 30
 margin-left: 16
 $on-click$: $open-right-sidebar-info = false 
 
---- container: main-row
+--- container: ftd.main
 
 --- ftd.column:
 if: $open-right-sidebar-info
@@ -504,6 +574,7 @@ boolean $status:
 margin-top: 25
 margin-bottom: 25
 border-bottom-radius: 15
+
 
 --- toc-instance:
 $loop$: $toc-obj as $obj
