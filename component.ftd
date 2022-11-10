@@ -10,7 +10,7 @@ variable: $what-are-component-completed
 -- ws.understood what-are-component-button: Completed
 $on-click$: toggle $what-are-component-completed
 $on-click$: message-host $what-are-component-object
-$chapter-status: $what-are-component-object
+$chapter-status: $what-are-component-completed
 
 -- ws.chapter: Booleans in FTD
 id: ws-booleans
