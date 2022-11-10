@@ -1,0 +1,90 @@
+
+-- boolean $what-are-component-completed: false
+$always-include$: true
+
+-- object what-are-component-object:
+function: ls.set-boolean
+variable: $what-are-component-completed
+
+-- ws.understood what-are-component-button: Completed
+$on-click$: toggle $what-are-component-completed
+$on-click$: message-host $what-are-component-object
+$chapter-status: $what-are-component-object
+
+-- ft.page: Booleans in FTD
+id: ws-booleans
+sidebar:truw
+button: what-are-component-button:
+$status: $what-are-component-completed
+
+-- ft.markdown:
+
+We created a simple hello world message [the last exercise](id: ws-hello-world).
+We could have done this in HTML as well. Where we differ from HTML is, if you
+wanted to add a variable or define data, you would have to switch to JavaScript.
+But we can do everything in FTD itself.
+
+Unlike JavaScript and Python and other dynamically typed languages, {ft.highlight:
+FTD is statically typed language}. All variables in FTD have a type, which must be
+specified when the variable is constructed.
+
+
+-- ft.code: This is how a boolean variable is created
+lang: ftd
+
+\-- boolean foo: true
+
+-- ft.markdown:
+
+We have created a `boolean` variable named `foo`, with an initial value of
+`true`. A boolean variable can have only two values, `true` or `false`, and it
+must be initialised with a value.
+
+-- ft.h1: Conditional UI
+
+We can use the `if` condition on a node to conditionally show a UI node:
+
+-- ft.code: We get the value of a variable using `$open` syntax
+lang: ftd
+
+\-- ftd.text: open is true
+if: $open
+
+-- ft.markdown:
+
+Only if the variable `open` is true only then text "open is true" would be
+visible.
+
+
+-- ft.h1: You Are Done
+
+-- ft.markdown:
+
+You have learnt how to define a boolean variable and use to control the UI.
+
+
+-- container: ws-booleans.content-wrap.right-sidebar-mobile
+
+-- ftd.column:
+height: 4000
+spacing: 10
+
+-- cbox.text-1: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-2: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- cbox.text-3: Textworthy Heading
+
+Of all the things possible, this is what you came up with? I am disappointed in 
+your lack of ingenuity.
+
+-- ftd.text: this is sidebar
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+

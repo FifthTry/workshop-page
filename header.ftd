@@ -56,7 +56,6 @@ site-logo: $site-logo
 site-url: $site-url 
 site-name: $site-name
 
-
 --- header-desktop:
 if: not $is-mobile
 sections: $sections
@@ -64,7 +63,6 @@ sub-sections: $sub-sections
 current-section: $current-section
 current-subsection: $current-subsection
 current-page: $current-page
-
 
 --- header-mobile:
 if: $is-mobile
@@ -112,11 +110,10 @@ link: $site-url
 --- ftd.image:
 if: $site-logo is not null
 src: $site-logo
-width: 40
+width: 64
 height: auto
 width if $is-mobile: 78
 height if $is-mobile: 32
-margin-top: 8
 
 --- ftd.text: $site-name
 if: $site-name is not null
@@ -316,8 +313,6 @@ overflow-x: auto
 $loop$: $sub-sections as $obj
 children: $obj.children 
 link: $obj.url
-
---- container: ftd.main
 
 
 
