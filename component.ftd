@@ -14,13 +14,13 @@ $chapter-status: $what-are-component-completed
 
 -- ws.chapter: Booleans in FTD
 id: ws-booleans
-sidebar:truw
+sidebar:true
 button: what-are-component-button:
 $status: $what-are-component-completed
 
 -- ft.markdown:
 
-We created a simple hello world message [the last exercise](id: ws-hello-world).
+We created a simple hello world message .
 We could have done this in HTML as well. Where we differ from HTML is, if you
 wanted to add a variable or define data, you would have to switch to JavaScript.
 But we can do everything in FTD itself.
@@ -66,9 +66,9 @@ You have learnt how to define a boolean variable and use to control the UI.
 
 -- container: ws-booleans.content-wrap.right-sidebar
 
--- sidebar:
+-- ws.sidebar:
 
 -- container: ws-booleans.content-wrap.right-sidebar-mobile
 
--- sidebar:
+-- ws.sidebar:
 

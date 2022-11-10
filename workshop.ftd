@@ -93,8 +93,8 @@ FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
 -- container: wp-page.content-wrap.right-sidebar
 
--- sidebar:
+-- ws.sidebar:
 
 -- container: wp-page.content-wrap.right-sidebar-mobile
 
--- sidebar:
+-- ws.sidebar:

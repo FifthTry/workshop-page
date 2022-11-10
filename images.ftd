@@ -11,18 +11,18 @@ variable: $what-are-images-completed
 -- ws.understood what-are-images-button: Completed
 $on-click$: toggle $what-are-images-completed
 $on-click$: message-host $what-are-images-object
-$chapter-status: $what-are-images-object
+$chapter-status: $what-are-images-completed
 
 -- ws.chapter: Images In FTD
 id: ws-images
 sidebar: true
-button: what-are-hello-world-button:
-$status: $what-are-hello-world-completed
+button: what-are-images-button:
+$status: $what-are-images-completed
 
 -- container: ws-images.content-wrap.right-sidebar
 
--- sidebar:
+-- ws.sidebar:
 
 -- container: ws-images.content-wrap.right-sidebar-mobile
 
--- sidebar:
+-- ws.sidebar:
