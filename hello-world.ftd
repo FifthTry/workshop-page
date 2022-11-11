@@ -4,10 +4,6 @@
 -- boolean $what-are-chapter-completed: false
 $always-include$: true
 
-
-
-
-
 -- object what-are-chapter-object:
 function: ls.set-boolean
 variable: $what-are-chapter-completed
@@ -15,8 +11,32 @@ variable: $what-are-chapter-completed
 -- ws.understood what-are-chapter-button: Completed
 $on-click$: $what-are-chapter-completed = true
 $on-click$: message-host $what-are-chapter-object
-$lesson-status: $what-are-chapter-completed
+$chapter-status: $what-are-chapter-completed
 
+
+-- boolean $what-are-task-completed: false
+$always-include$: true
+
+-- object what-are-task-object:
+function: ls.set-boolean
+variable: $what-are-task-completed
+
+-- ws.understood what-are-task-button: Completed
+$on-click$: $what-are-task-completed = true
+$on-click$: message-host $what-are-task-object
+$task-status: $what-are-task-completed
+
+-- boolean $what-are-lesson-completed: false
+$always-include$: true
+
+-- object what-are-lesson-object:
+function: ls.set-boolean
+variable: $what-are-lesson-completed
+
+-- ws.understood what-are-lesson-button: Completed
+$on-click$: $what-are-lesson-completed = true
+$on-click$: message-host $what-are-lesson-object
+$lesson-status: $what-are-lesson-completed
 
 -- ws.chapter: Hello World
 id: ws-hello-world
@@ -31,8 +51,8 @@ In this exercise **we will install FPM, and run a hello world program**.
 
 
 -- ws.lesson: Task 1: Install FPM
-$completed: $ws.what-are-lesson-completed
-button: ws.what-are-lesson-button:
+$status: $what-are-lesson-completed
+button: what-are-lesson-button:
 
 To install {ds.highlight: fpm we will use the installation script}:
 
@@ -69,8 +89,8 @@ If you get an error message in chat or speak up.
 -- container: ws-hello-world
 
 -- ws.task: Task 2: FPM.ftd
-$completed: $ws.what-are-task-completed
-button: ws.what-are-task-button:
+$status: $what-are-task-completed
+button: what-are-task-button:
 
 -- ds.markdown:
 
@@ -112,8 +132,8 @@ Congrats, you have created your first FPM package!
 -- container: ws-hello-world
 
 -- ws.task: Task 3: Hello World
-$completed: $ws.what-are-task-completed
-button: ws.what-are-task-button:
+$status: $what-are-task-completed
+button: what-are-task-button:
 
 
 `ftd` has a concept of "[components](https://ftd.dev/component/)". FTD

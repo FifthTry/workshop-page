@@ -2,11 +2,37 @@
 
 
 
+-- boolean $what-are-chapter-completed: false
+$always-include$: true
+
+-- object what-are-chapter-object:
+function: ls.set-boolean
+variable: $what-are-chapter-completed
+
+-- ws.understood what-are-chapter-button: Completed
+$on-click$: $what-are-chapter-completed = true
+$on-click$: message-host $what-are-chapter-object
+$chapter-status: $what-are-chapter-completed
+
+
+-- boolean $what-are-task-completed: false
+$always-include$: true
+
+-- object what-are-task-object:
+function: ls.set-boolean
+variable: $what-are-task-completed
+
+-- ws.understood what-are-task-button: Completed
+$on-click$: $what-are-task-completed = true
+$on-click$: message-host $what-are-task-object
+$task-status: $what-are-task-completed
+
 
 -- ws.chapter: Booleans in FTD
 id: ws-booleans
 sidebar: true
-$status: $ws.what-are-chapter-completed
+$status: $what-are-chapter-completed
+button: what-are-chapter-button:
 
 -- ds.markdown:
 
@@ -47,17 +73,25 @@ Only if the variable `open` is true only then text "open is true" would be
 visible.
 
 
--- ds.h1: Task 1: Fix the `index.ftd` file
+-- ws.task: Task 1: Fix the `index.ftd` file
+$status: $what-are-task-completed
+button: what-are-task-button:
 
 We wanted to create a link in the [index.ftd](https://github.com/ftd-lang/ftd-workshop/blob/main/01-data/02-boolean/index.ftd) file, but for some
 reason the link is not working, can you find the problem and fix it?
 
--- ds.h1: Task 2: Fix the `boolean.ftd`
+-- container: ws-booleans
+
+-- ws.task: Task 2: Fix the `boolean.ftd`
+$status: $what-are-task-completed
+button: what-are-task-button:
 
 If you open `/boolean/` you will see an error. This is because we have not yet
 defined a variable that we are trying to use. [boolean.ftd](https://github.com/ftd-lang/ftd-workshop/blob/main/01-data/02-boolean/boolean.ftd) is
 buggy! View the `boolean.ftd` and follow the instructions there to create a new
 variable.
+
+-- container: ws-booleans
 
 -- ds.h1: You Are Done
 

@@ -703,6 +703,7 @@ optional body body:
 width: fill
 append-at: task-wrap
 ftd.ui button:
+boolean $status:false
 margin-top: $fpm.space.space-6
 margin-bottom: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-6
@@ -710,7 +711,7 @@ padding-top: $fpm.space.space-6
 padding-bottom: $fpm.space.space-10
 border-radius: 6
 background-color: $fpm.color.main.scrim
-;background-color if $status: $fpm.color.main.cta-tertiary.base
+background-color if $status: $fpm.color.main.cta-tertiary.base
 open: true
 
 --- ftd.column:
@@ -763,14 +764,15 @@ optional body body:
 width: fill
 append-at: lesson-wrap
 ftd.ui button:
+boolean $status: false
 margin-top: $fpm.space.space-6
 margin-bottom: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-6
 padding-top: $fpm.space.space-6
 padding-bottom: $fpm.space.space-10
 border-radius: 6
-background-color: $fpm.color.main.cta-tertiary.base
-;background-color if $status: $fpm.color.main.cta-tertiary.base
+background-color: $fpm.color.main.custom.four
+background-color if $status: $fpm.color.main.cta-tertiary.base
 open: true
 
 --- ftd.column:

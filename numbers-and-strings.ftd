@@ -2,9 +2,38 @@
 
 
 
+-- boolean $what-are-chapter-completed: false
+$always-include$: true
 
--- ws.page: Numbers And Strings
+-- object what-are-chapter-object:
+function: ls.set-boolean
+variable: $what-are-chapter-completed
+
+-- ws.understood what-are-chapter-button: Completed
+$on-click$: $what-are-chapter-completed = true
+$on-click$: message-host $what-are-chapter-object
+$chapter-status: $what-are-chapter-completed
+
+
+-- boolean $what-are-task-completed: false
+$always-include$: true
+
+-- object what-are-task-object:
+function: ls.set-boolean
+variable: $what-are-task-completed
+
+-- ws.understood what-are-task-button: Completed
+$on-click$: $what-are-task-completed = true
+$on-click$: message-host $what-are-task-object
+$task-status: $what-are-task-completed
+
+
+
+-- ws.chapter: Numbers And Strings
 id: ws-numbers-and-strings
+sidebar: true
+$status: $what-are-chapter-completed
+button: what-are-chapter-button:
 
 In the last exercise we created a boolean, we will now use numbers and strings
 in FTD.
@@ -41,19 +70,25 @@ software before hand (other than your favorite editor).
 
 {ds.highlight: This makes FTD quite suitable for authoring content.}
 
--- ds.h1: Task: Fix FTD files
+-- container: ws-numbers-and-strings
+
+-- ws.task: Task: Fix FTD files
+$status: $what-are-task-completed
+button: what-are-task-button:
 
 Go through [numbers.ftd](https://github.com/ftd-lang/ftd-workshop/blob/main/01-data/03-numbers-and-strings/numbers.ftd)
 and [strings.ftd](https://github.com/ftd-lang/ftd-workshop/blob/main/01-data/03-numbers-and-strings/strings.ftd) as per
 instructions given in the file.
+
+-- container: ws-numbers-and-strings
 
 -- ds.h1: You Are Done
 
 -- ds.markdown:
 
 You have learnt basics of numbers and strings. {ds.highlight: Lets move on to
-[records now](id: ws-records)} or go back to [the workshop page](id: workshop).
+[records now](id:ws-booleans)} or go back to [the workshop page](id: ws-booleans).
 
 
--- container: ws-numbers-and-strings.wrapper.right-sidebar
--- workshop.sidebar:
+-- container: ws-numbers-and-strings.content-wrap.right-sidebar
+-- ws.sidebar:
