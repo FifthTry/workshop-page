@@ -21,7 +21,7 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-task-completed
 
--- ws.understood what-are-task-button: Completed
+-- ws.understood what-are-task-button: Done
 $on-click$: $what-are-task-completed = true
 $on-click$: message-host $what-are-task-object
 $task-status: $what-are-task-completed
@@ -33,7 +33,7 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-lesson-completed
 
--- ws.understood what-are-lesson-button: Completed
+-- ws.understood what-are-lesson-button: Done
 $on-click$: $what-are-lesson-completed = true
 $on-click$: message-host $what-are-lesson-object
 $lesson-status: $what-are-lesson-completed
@@ -49,10 +49,12 @@ the package manager and server for FTD.
 
 In this exercise **we will install FPM, and run a hello world program**.
 
+-- container: ws-hello-world
 
 -- ws.lesson: Task 1: Install FPM
 $status: $what-are-lesson-completed
 button: what-are-lesson-button:
+
 
 To install {ds.highlight: fpm we will use the installation script}:
 

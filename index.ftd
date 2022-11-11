@@ -18,7 +18,7 @@ if: $ftd.device == mobile
 -- fpm.sitemap-data sitemap:
 $processor$: sitemap
 
--- optional string site-name: 
+-- optional string site-name: Workshop Page
 
 -- optional ftd.image-src site-logo:
 dark: $assets.files.images.site-icon.svg.dark
@@ -89,65 +89,30 @@ $task-status: $what-are-task-completed
 
 
 
+-- ds.page: Workshop Page
+id: doc-page
+
+Workshop page makes learning easy!
+
+Workshop page is designed to write documentation of web workshops. 
 
 
+We have designed and developed workshop page component using our FTD
+for you. If you want to create learning tutorial with adding task for
+your users or students, use our workshop page.
+
+Its easy to install. Follow our [documentation](ws-chapter/) to make your 
+workshop live!
 
 
-
--- chapter: Workshop page
-id: ws-page
-sidebar: true
-$status: $what-are-chapter-completed
-
-Some body content of workshop page.
-
--- cb.code: Add below lines into your FPM.ftd file
-lang: ftd
-
-\-- ws.page: Page title
-Some body here
-
--- lesson: What is FPM CLI?
-$understood: $what-are-lesson-understood
-button: what-are-lesson-button:
-
-FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
-
-Learn more about it on fpm.dev
-
--- cb.code: Add below lines into your FPM.ftd file
-lang: ftd
-
-\-- ws.page: Page title
-Some body here
-
-\-- ws.page: Page title
-Some body here
-
-\-- ws.page: Page title
-Some body here
-
-\-- ws.page: Page title
-Some body here
-
-\-- ws.page: Page title
-Some body here
-
--- container: ws-page
-
--- task: Install FPM CLI:
-$completed: $what-are-task-completed
-button: what-are-task-button:
-
-FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
-
--- container: ws-page.content-wrap.right-sidebar
+-- container: doc-page.wrapper.right-sidebar
 
 -- sidebar:
 
--- container: ws-page.content-wrap.right-sidebar-mobile
 
--- sidebar:
+
+
+
 
 
 
@@ -272,7 +237,7 @@ padding-bottom if not $status: 100
 width: fill
 padding-vertical: $fpm.space.space-4
 
---- tf.h0: $title
+--- ds.h0: $title
 if: $title is not null
 
 $body
@@ -326,7 +291,7 @@ sticky: true
 top: 0
 right: 48
 height: calc 100vh - 0px
-background-color:  $fpm.color.main.background.step-1
+background-color:  $fpm.color.main.background.overlay
 overflow-y: auto
 align: top-right
 margin-right: 48
@@ -493,7 +458,7 @@ z-index: 99
 width: fill
 id: heading-container
 
---- tf.h1: $title
+--- ds.h1: $title
 if: $title is not null
 
 --- container: heading-container
@@ -510,7 +475,7 @@ $on-click$: toggle $open-right-sidebar-info
 
 --- container: page-wrap-mobile
 
---- tf.markdown:
+--- ds.markdown:
 if: $body is not null
 
 $body
@@ -578,7 +543,7 @@ height: calc 100vh - 0px
 overflow-y: auto
 width: 450
 align: top-left
-background-color:  $fpm.color.main.background.step-1
+background-color:  $fpm.color.main.background.overlay
 border-radius: 8
 padding-left: 24
 padding-top: 24
@@ -710,8 +675,8 @@ padding-horizontal: $fpm.space.space-6
 padding-top: $fpm.space.space-6
 padding-bottom: $fpm.space.space-10
 border-radius: 6
-background-color: $fpm.color.main.scrim
-background-color if $status: $fpm.color.main.cta-tertiary.base
+background-color: $fpm.color.main.background.step-1
+background-color if $status:  $fpm.color.main.cta-tertiary.base
 open: true
 
 --- ftd.column:
@@ -745,9 +710,12 @@ color: $fpm.color.main.custom.three
 
 --- container: task-wrap
 
---- tf.markdown:
-
-$body
+--- ftd.text:
+text: $body
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+margin-bottom: 24
+margin-top: 24
 
 
 
@@ -771,8 +739,8 @@ padding-horizontal: $fpm.space.space-6
 padding-top: $fpm.space.space-6
 padding-bottom: $fpm.space.space-10
 border-radius: 6
-background-color: $fpm.color.main.custom.four
-background-color if $status: $fpm.color.main.cta-tertiary.base
+background-color: $fpm.color.main.background.step-1
+background-color if $status:  $fpm.color.main.cta-tertiary.base
 open: true
 
 --- ftd.column:
@@ -791,7 +759,6 @@ id: lesson-wrap
 --- ftd.row:
 width: fill
 if: $title is not null
-color: $fpm.color.main.text-strong
 
 --- ftd.image:
 src: $assets.files.images.lesson-2-icon.svg
@@ -806,9 +773,12 @@ color: $fpm.color.main.custom.two
 
 --- container: lesson-wrap
 
---- tf.markdown:
-
-$body
+--- ftd.text:
+text: $body
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+margin-bottom: 24
+margin-top: 24
 
 
 
@@ -955,21 +925,40 @@ color: $fpm.color.main.text-strong
 width: fill
 padding-bottom: 90
 
+
+
+
+
+
+
+
+
+
 -- ftd.column sidebar:
-spacing: 10
+width: fill
 
---- cbox.text-1: Textworthy Heading
+--- cbox.text-4: Need Help?
 
-Of all the things possible, this is what you came up with? I am disappointed in 
-your lack of ingenuity.
+Please join our [Discord to ask any questions](https://discord.gg/d2MgKBybEQ)
+related to this workshop!
 
---- cbox.text-2: Textworthy Heading
+Or just meet the others who are learning FTD like you :-)
 
-Of all the things possible, this is what you came up with? I am disappointed in 
-your lack of ingenuity.
 
---- cbox.text-3: Textworthy Heading
+--- cbox.info: Github Repo
 
-Of all the things possible, this is what you came up with? I am disappointed in 
-your lack of ingenuity.
+The code for this workshop can be found on Github:
+[ftd-lang/ftd-workshop](https://github.com/ftd-lang/ftd-workshop).
+
+
+--- cbox.text-4: Join The Next Session
+
+The next remote workshop would be happening on **4th Nov 2022**. [Learn more
+here](https://fifthtry.com/events/).
+
+
+-- ds.page: FTD Workshop
+id: workshop
+
+Welcome to the FTD Language's official workshop.
 

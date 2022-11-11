@@ -1,0 +1,120 @@
+-- import: fifthtry.github.io/workshop-page as ws
+
+
+
+
+-- boolean $what-are-chapter-completed: false
+$always-include$: true
+
+-- object what-are-chapter-object:
+function: ls.set-boolean
+variable: $what-are-chapter-completed
+
+-- ws.understood what-are-chapter-button: Completed
+$on-click$: $what-are-chapter-completed = true
+$on-click$: message-host $what-are-chapter-object
+$chapter-status: $what-are-chapter-completed
+
+
+
+
+-- ws.chapter: Using `-- chapter` component:
+id: ws-page
+sidebar: true
+$status: $what-are-chapter-completed
+
+How to use?
+
+Add below depedencies into your `FPM.ftd` file
+
+-- ftd.column:
+margin-top: -54
+
+-- ds.code: Locate FPM.ftd and copy below into it
+lang: ftd
+
+\-- fpm.dependency: fifthtry.github.io/workshop-page as ws
+
+\-- fpm.auto-import: ws
+
+-- ftd.column:
+margin-top: 24
+
+-- ds.markdown: 
+
+Now create your `workshop.ftd` file and start using below components. If you
+are using `doc-site` do not include `-- ds.page` because `-- ws.chapter` has
+with header and toc inbuilt.
+
+
+-- ftd.column:
+margin-top: -24
+
+
+-- ds.h3: How to create new chapter?
+
+We have created three components in workshop page. `-- ws.chapter:` , 
+`-- ws.lesson:` and `-- ws.task:`
+
+Let's understand how to use `-- ws.chapter:` component.
+
+
+-- ftd.column:
+margin-top: -24
+
+-- ds.code: Add below lines into your `workshop.ftd` file
+lang: ftd
+
+\-- boolean $what-are-chapter-completed: false
+$always-include$: true
+
+\-- object what-are-chapter-object:
+function: ls.set-boolean
+variable: $what-are-chapter-completed
+
+\-- understood what-are-chapter-button: Completed --> button title
+$on-click$: toggle $what-are-chapter-completed
+$on-click$: message-host $what-are-chapter-object
+$lesson-status: $what-are-chapter-completed
+
+
+-- ftd.column:
+margin-top: 24
+
+
+-- ds.markdown:
+
+Add below code snippet as it is in your FTD file. You can change button title 
+if required.
+
+-- ds.code: How to use `-- ws.chapter`? use below code snippet
+lang: ftd
+
+\-- ws.chapter: Chapter title
+id: ws-page --> ID is importart to swich from one container to another
+sidebar: true --> Remove this line if sidebar not needed
+$status: $what-are-chapter-completed --> sets localstorage once chapter completed
+
+Some chapter body here. You can also include `FTD` components like 
+code-block etc in this section of chapter body.
+
+
+-- ds.markdown:
+
+At `-- ws.chapter:` page bottom right you will see `Completed` button. On
+click of this button, `what-are-chapter-completed` localstorage variable 
+will be set to `true` on user's browser. 
+
+This means user has done and understood the chapter. Chapter completion message
+will be shown to user once they click on `Completed` button.
+
+-- container: ws-page
+
+
+-- container: ws-page.content-wrap.right-sidebar
+
+-- ws.sidebar:
+
+-- container: ws-page.content-wrap.right-sidebar-mobile
+
+-- ws.sidebar:
