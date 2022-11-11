@@ -21,7 +21,7 @@ $chapter-status: $what-are-chapter-completed
 -- ws.chapter: Using `-- chapter` component:
 id: ws-page
 sidebar: true
-$status: $what-are-chapter-completed
+$status: $ws.what-are-chapter-completed
 
 How to use?
 
@@ -110,8 +110,13 @@ will be set to `true` on user's browser.
 This means user has done and understood the chapter. Chapter completion message
 will be shown to user once they click on `Completed` button.
 
--- container: ws-page
+-- ftd.column:
+margin-top: 24
+width: fill
 
+-- ds.markdown:
+
+See working demo below, click on `Completed` button to see the how it works.
 
 -- container: ws-page.content-wrap.right-sidebar
 

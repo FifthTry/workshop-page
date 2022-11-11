@@ -108,7 +108,7 @@ See working demo below, click on `Done` button to see the how it works.
 
 
 -- ws.task: What is FPM CLI?
-$status: $what-are-task-completed
+$status: $ws.what-are-task-completed
 
 FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 

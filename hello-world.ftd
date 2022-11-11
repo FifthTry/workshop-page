@@ -33,7 +33,7 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-lesson-completed
 
--- ws.understood what-are-lesson-button: Done
+-- ws.understood what-are-lesson-button: Understood
 $on-click$: $what-are-lesson-completed = true
 $on-click$: message-host $what-are-lesson-object
 $lesson-status: $what-are-lesson-completed
@@ -51,7 +51,7 @@ In this exercise **we will install FPM, and run a hello world program**.
 
 -- container: ws-hello-world
 
--- ws.lesson: Task 1: Install FPM
+-- ws.lesson: Lesson 1: Install FPM
 $status: $what-are-lesson-completed
 button: what-are-lesson-button:
 
@@ -90,7 +90,7 @@ If you get an error message in chat or speak up.
 
 -- container: ws-hello-world
 
--- ws.task: Task 2: FPM.ftd
+-- ws.task: Task 1: FPM.ftd
 $status: $what-are-task-completed
 button: what-are-task-button:
 
@@ -132,28 +132,6 @@ server address (http://127.0.0.1:8000 by default), you will see an empty page.
 Congrats, you have created your first FPM package!
 
 -- container: ws-hello-world
-
--- ws.task: Task 3: Hello World
-$status: $what-are-task-completed
-button: what-are-task-button:
-
-
-`ftd` has a concept of "[components](https://ftd.dev/component/)". FTD
-components are UI building blocks. FTD comes with a bunch of [kernel
-components](https://ftd.dev/kernel/), you can think of them as the `div` and `p`
-etc provided by HTML. One of the is kernel components is [ftd.text](https://ftd.dev/text/),
-which is used for showing text.
-
-We are going to use `ftd.text` to show a hello world message in this exercise.
-
-The reason we saw an empty page is because `fpm` finds `index.ftd` next to
-`FPM.ftd`. Any file `foo.ftd` is converted to URL `/foo/`. If it was `x/y.ftd`
-the URL is `/x/y/`. We have special rule for `index.ftd` file, so `index.ftd`
-on top level is `/`. `x/index.ftd` would have been `/x/` and so on.
-
-
-This repo comes with an [index.ftd](https://github.com/ftd-lang/ftd-workshop/blob/main/01-data/01-hello-world/index.ftd)
-file, {ds.highlight: go ahead and view it and modify it as it instructs}.
 
 
 -- ds.h1: You are Done
