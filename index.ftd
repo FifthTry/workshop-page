@@ -921,21 +921,21 @@ padding-bottom: 90
 height: 4000
 spacing: 10
 
--- cbox.text-1: Textworthy Heading
+--- cbox.text-1: Textworthy Heading
 
 Of all the things possible, this is what you came up with? I am disappointed in 
 your lack of ingenuity.
 
--- cbox.text-2: Textworthy Heading
+--- cbox.text-2: Textworthy Heading
 
 Of all the things possible, this is what you came up with? I am disappointed in 
 your lack of ingenuity.
 
--- cbox.text-3: Textworthy Heading
+--- cbox.text-3: Textworthy Heading
 
 Of all the things possible, this is what you came up with? I am disappointed in 
 your lack of ingenuity.
 
--- ftd.text: this is sidebar
+--- ftd.text: this is sidebar
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
