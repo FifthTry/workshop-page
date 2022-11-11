@@ -3,7 +3,7 @@
 -- fpm.package: fifthtry.github.io/workshop-page
 download-base-url: https://raw.githubusercontent.com/fifthtry/workshop-page/main
 
--- fpm.dependency: fifthtry.github.io/night-moon-cs as cs
+-- fpm.dependency: fifthtry.github.io/color-doc as cs
 -- fpm.dependency: fifthtry.github.io/package-doc as pd
 -- fpm.dependency: fifthtry.github.io/button as button
 -- fpm.dependency: fifthtry.github.io/admonitions as cbox
