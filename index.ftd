@@ -38,7 +38,7 @@ function: ls.set-boolean
 variable: $what-are-lesson-understood
 
 -- understood what-are-lesson-button: Understood
-$on-click$: toggle $what-are-lesson-understood
+$on-click$: $what-are-lesson-understood = true
 $on-click$: message-host $what-are-lesson-object
 $lesson-status: $what-are-lesson-understood
 
@@ -59,7 +59,7 @@ function: ls.set-boolean
 variable: $what-are-chapter-completed
 
 -- understood what-are-chapter-button: Completed
-$on-click$: toggle $what-are-chapter-completed
+$on-click$: $what-are-chapter-completed = true
 $on-click$: message-host $what-are-chapter-object
 $lesson-status: $what-are-chapter-completed
 
@@ -81,7 +81,7 @@ function: ls.set-boolean
 variable: $what-are-task-completed
 
 -- understood what-are-task-button: Done
-$on-click$: toggle $what-are-task-completed
+$on-click$: $what-are-task-completed = true
 $on-click$: message-host $what-are-task-object
 $task-status: $what-are-task-completed
 
