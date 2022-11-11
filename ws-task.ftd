@@ -3,34 +3,28 @@
 
 
 
--- boolean $what-are-chapter-completed: false
+-- boolean $what-are-task-completed: false
 $always-include$: true
 
--- object what-are-chapter-object:
+-- object what-are-task-object:
 function: ls.set-boolean
-variable: $what-are-chapter-completed
+variable: $what-are-task-completed
 
--- ws.understood what-are-chapter-button: Completed
-$on-click$: $what-are-chapter-completed = true
-$on-click$: message-host $what-are-chapter-object
-$chapter-status: $what-are-chapter-completed
-
-
+-- ws.understood what-are-task-button: Completed
+$on-click$: $what-are-task-completed = true
+$on-click$: message-host $what-are-task-object
+$task-status: $what-are-task-completed
 
 
--- ws.chapter: Using Workshop page:
+-- ds.page: Using `-- task` component:
 id: ws-page-task
 sidebar: true
-$status: $what-are-chapter-completed
 
-Workshop page makes learning easy!
 
-Workshop page is designed to write documentation of web workshops. 
-
-How to use?
 
 -- ftd.column:
 margin-top: -54
+width: fill
 
 -- ds.code: Add below depedencies into your FPM.ftd file
 lang: ftd
@@ -41,47 +35,36 @@ lang: ftd
 
 -- ftd.column:
 margin-top: 24
+width: fill
 
--- ds.markdown: 
+-- ds.h3: How to create new task?
 
-Now create your `workshop.ftd` file and start using below components. If you
-are using `doc-site` do not include `-- ds.page` because `-- ws.chapter` has
-with header and toc inbuilt.
-
-
--- ftd.column:
-margin-top: -24
-
-
--- ds.h3: How to create new chapter?
-
-We have created three components in workshop page. `-- ws.chapter:` , 
-`-- ws.lesson:` and `-- ws.task:`
-
-Let's understand how to use `-- ws.chapter:` component.
+Let's understand how to use `-- ws.task:` component.
 
 
 -- ftd.column:
 margin-top: -24
+width: fill
 
 -- ds.code: Add below lines into your `workshop.ftd` file
 lang: ftd
 
-\-- boolean $what-are-chapter-completed: false
+\-- boolean $what-are-task-completed: false
 $always-include$: true
 
-\-- object what-are-chapter-object:
+\-- object what-are-task-object:
 function: ls.set-boolean
-variable: $what-are-chapter-completed
+variable: $what-are-task-completed
 
-\-- understood what-are-chapter-button: Completed --> button title
-$on-click$: toggle $what-are-chapter-completed
-$on-click$: message-host $what-are-chapter-object
-$lesson-status: $what-are-chapter-completed
+\-- understood what-are-task-button: Completed --> button title
+$on-click$: toggle $what-are-task-completed
+$on-click$: message-host $what-are-task-object
+$task-status: $what-are-task-completed
 
 
 -- ftd.column:
 margin-top: 24
+width: fill
 
 
 -- ds.markdown:
@@ -89,19 +72,16 @@ margin-top: 24
 Add below code snippet as it is in your FTD file. You can change button title 
 if required.
 
--- ds.code: How to use `-- ws.chapter`? use below code snippet
+-- ds.code: How to use `-- ws.task`? use below code snippet
 lang: ftd
 
-\-- ws.chapter: Chapter title
+\-- ws.task: task title
 id: ws-page --> ID is importart to swich from one container to another
 sidebar: true --> Remove this line if sidebar not needed
-$status: $what-are-chapter-completed --> sets localstorage once chapter completed
+$status: $what-are-task-completed --> sets localstorage once task completed
 
-Some chapter body here. You can also include `FTD` components like 
-code-block etc in this section of chapter body.
-
-
-
+Some task body here. You can also include `FTD` components like 
+code-block etc in this section of task body.
 
 
 
@@ -109,25 +89,27 @@ code-block etc in this section of chapter body.
 lang: ftd
 
 
-\-- lesson: What is FPM CLI?
-$understood: $what-are-lesson-understood
-button: what-are-lesson-button:
+\-- task: What is FPM CLI?
+$status: $what-are-task-understood
+button: what-are-task-button:
 
 FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
 Learn more about it on fpm.dev
 
--- ds.code: Add below lines into your FPM.ftd file
-lang: ftd
 
-\-- ws.page: Page title
-Some body here
+-- ws.task: What is FPM CLI?
+$status: $what-are-task-completed
+button: what-are-task-button:
 
+FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
--- container: ws-page-task.content-wrap.right-sidebar
+Learn more about it on fpm.dev
+
+-- container: ws-page-task.wrapper.right-sidebar
 
 -- ws.sidebar:
 
--- container: ws-page-task.content-wrap.right-sidebar-mobile
+-- container: ws-page-task.wrapper.right-sidebar-mobile
 
 -- ws.sidebar:

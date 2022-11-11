@@ -134,7 +134,7 @@ ftd.ui button: what-are-chapter-button:
 width: fill
 open: true
 append-at: content-wrap
-boolean $status: 
+boolean $status: false
 background-image: $assets.files.images.1127-ai.svg
 background-color: $fpm.color.main.background.base
 gradient-colors: #E7B526, #17C3A6
