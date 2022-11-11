@@ -667,7 +667,7 @@ optional caption title:
 optional body body:
 width: fill
 append-at: task-wrap
-ftd.ui button:
+ftd.ui button: what-are-task-button:
 boolean $status:false
 margin-top: $fpm.space.space-6
 margin-bottom: $fpm.space.space-6
@@ -731,7 +731,7 @@ optional caption title:
 optional body body:
 width: fill
 append-at: lesson-wrap
-ftd.ui button:
+ftd.ui button: what-are-lesson-button:
 boolean $status: false
 margin-top: $fpm.space.space-6
 margin-bottom: $fpm.space.space-6

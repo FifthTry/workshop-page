@@ -110,5 +110,8 @@ Learn more about it on fpm.dev
 
 -- ws.sidebar:
 
+-- container: ws-page-lesson.wrapper.right-sidebar-mobile
+
+-- ws.sidebar:
 
 
