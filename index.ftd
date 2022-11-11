@@ -176,8 +176,8 @@ gradient-colors: #E7B526, #17C3A6
 gradient-direction: to top
 boolean sidebar: false
 
---- window-popup:
-if: $what-are-chapter-completed
+;--- window-popup:
+;if: $what-are-chapter-completed
 ;if: $pop-up-status
 
 --- container: ftd.main
@@ -265,7 +265,8 @@ $status: $status
 width: fill
 id: wrap-page-one 
 min-height: fill
-padding-bottom: 84
+padding-bottom if $what-are-chapter-completed: 400
+padding-bottom if not $what-are-chapter-completed: 100
 
 --- ftd.column:
 width: fill
@@ -282,8 +283,39 @@ $body
 anchor: parent
 right: 0
 bottom: 24
+id: celebrations
+background-color: $fpm.color.main.background.step-2
+
 
 --- button: 
+
+--- container: wrap-page-one 
+
+--- ftd.column:
+if: $what-are-chapter-completed
+anchor: parent
+left: 0
+bottom: 100
+z-index: 99999
+id: celebrations
+width: fill
+padding-vertical: 24
+padding-horizontal: 24
+border-radius: 8
+
+--- ftd.column:
+width: 200
+align: center
+background-image: $assets.files.images.celebration-flower.gif
+height: 200
+
+--- container: celebrations
+
+--- ftd.text: Congratulations! you have completed this chapter.
+role: $fpm.type.copy-large
+color: $fpm.color.main.text-strong
+align: center
+
 
 --- container: main-row
 
