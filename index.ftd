@@ -1,6 +1,6 @@
 -- import: fifthtry.github.io/workshop-page/assets
 -- import: fifthtry.github.io/package-doc/doc as pd
--- import: fifthtry.github.io/workshop-page/header as h
+-- import: fifthtry.github.io/header as h 
 
 
 
@@ -372,7 +372,7 @@ current-subsection: $current-subsection
 current-page: $current-page
 site-logo: $site-logo
 site-url: $site-url
-header-toc: $toc
+toc: $toc
 site-name: $site-name
 
 --- ftd.column:
