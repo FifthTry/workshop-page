@@ -170,7 +170,7 @@ width: fill
 open: true
 append-at: content-wrap
 boolean $status: 
-;background-image: $assets.files.images.6917-ai.png
+background-image: $assets.files.images.1127-ai.svg
 background-color: $fpm.color.main.background.base
 gradient-colors: #E7B526, #17C3A6
 gradient-direction: to top
@@ -265,8 +265,8 @@ $status: $status
 width: fill
 id: wrap-page-one 
 min-height: fill
-padding-bottom if $what-are-chapter-completed: 400
-padding-bottom if not $what-are-chapter-completed: 100
+padding-bottom if $status: 400
+padding-bottom if not $status: 100
 
 --- ftd.column:
 width: fill
@@ -286,13 +286,12 @@ bottom: 24
 id: celebrations
 background-color: $fpm.color.main.background.step-2
 
-
 --- button: 
 
 --- container: wrap-page-one 
 
 --- ftd.column:
-if: $what-are-chapter-completed
+if: $status
 anchor: parent
 left: 0
 bottom: 100
@@ -706,17 +705,18 @@ append-at: task-wrap
 ftd.ui button:
 margin-top: $fpm.space.space-6
 margin-bottom: $fpm.space.space-6
-padding-vertical: $fpm.space.space-4
-padding-horizontal: $fpm.space.space-4
+padding-horizontal: $fpm.space.space-6
+padding-top: $fpm.space.space-6
+padding-bottom: $fpm.space.space-10
 border-radius: 6
 background-color: $fpm.color.main.scrim
-padding-top: 0
+;background-color if $status: $fpm.color.main.cta-tertiary.base
 open: true
 
 --- ftd.column:
 anchor: parent
-right: 16
-bottom: 16
+right: 24
+bottom: 24
 
 --- button: 
 
@@ -729,7 +729,6 @@ id: task-wrap
 --- ftd.row:
 width: fill
 if: $title is not null
-padding-vertical: $fpm.space.space-3
 color: $fpm.color.main.text-strong
 
 --- ftd.image:
@@ -766,17 +765,18 @@ append-at: lesson-wrap
 ftd.ui button:
 margin-top: $fpm.space.space-6
 margin-bottom: $fpm.space.space-6
-padding-vertical: $fpm.space.space-4
-padding-horizontal: $fpm.space.space-4
+padding-horizontal: $fpm.space.space-6
+padding-top: $fpm.space.space-6
+padding-bottom: $fpm.space.space-10
 border-radius: 6
-background-color: $fpm.color.main.custom.four
-padding-top: 0
+background-color: $fpm.color.main.cta-tertiary.base
+;background-color if $status: $fpm.color.main.cta-tertiary.base
 open: true
 
 --- ftd.column:
 anchor: parent
-right: 16
-bottom: 16
+right: 24
+bottom: 24
 
 --- button: 
 
@@ -789,7 +789,6 @@ id: lesson-wrap
 --- ftd.row:
 width: fill
 if: $title is not null
-padding-vertical: $fpm.space.space-3
 color: $fpm.color.main.text-strong
 
 --- ftd.image:
@@ -830,9 +829,12 @@ background-color: $fpm.color.main.cta-primary.hover
 ;background-color if $MOUSE-IN: $fpm.color.main.cta-primary.base
 role: $fpm.type.copy-large
 color: $fpm.color.main.text-strong
-background-color if $lesson-status: $fpm.color.main.border
-background-color if $task-status: $fpm.color.main.border
-background-color if $chapter-status: $fpm.color.main.border
+background-color if $lesson-status: $fpm.color.main.background.step-2
+background-color if $task-status: $fpm.color.main.background.step-2
+background-color if $chapter-status: $fpm.color.main.background.step-2
+color if $lesson-status: $fpm.color.main.text
+color if $task-status: $fpm.color.main.text
+color if $chapter-status: $fpm.color.main.text
 
 
 
@@ -952,7 +954,6 @@ width: fill
 padding-bottom: 90
 
 -- ftd.column sidebar:
-height: 4000
 spacing: 10
 
 --- cbox.text-1: Textworthy Heading
@@ -970,6 +971,3 @@ your lack of ingenuity.
 Of all the things possible, this is what you came up with? I am disappointed in 
 your lack of ingenuity.
 
---- ftd.text: this is sidebar
-role: $fpm.type.fine-print
-color: $fpm.color.main.text

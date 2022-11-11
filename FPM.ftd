@@ -15,7 +15,7 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/workshop-page/main
 -- fpm.auto-import: fpm
 -- fpm.auto-import: pd/typography as tf
 -- fpm.auto-import: pd/code-block as cb
--- fpm.auto-import: pd/forest-theme as ft
+-- fpm.auto-import: pd/forest-theme as ds
 -- fpm.auto-import: button
 -- fpm.auto-import: cbox
 -- fpm.auto-import: fifthtry.github.io/workshop-page/FPM/config
@@ -25,14 +25,9 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/workshop-page/main
 #Home: /index
 
 - Part 1 - Working With Data: 
-  - 1 - Hello World: /
-    icon: /images/checked.svg
-    is-disabled: true
-  - 2 - Booleans: /
-    icon: /images/unchecked.svg
-  - 3 - Numbers And Strings: /
-    icon: /images/unchecked.svg
-  - 4 - Records: /
-    icon: /images/unchecked.svg
-  - 5 - Optionals: /
-    icon: ◻
+
+  - 1 - Hello World: hello-world/
+
+  - 2 - Booleans: booleans/
+
+  - 3 - Numbers And Strings: numbers-and-strings/

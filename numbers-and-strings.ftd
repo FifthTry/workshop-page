@@ -1,0 +1,59 @@
+-- import: fifthtry.github.io/workshop-page as ws
+
+
+
+
+-- ws.page: Numbers And Strings
+id: ws-numbers-and-strings
+
+In the last exercise we created a boolean, we will now use numbers and strings
+in FTD.
+
+We have two types, {ds.highlight: `integer` and `decimal` for dealing with
+numbers} in FTD. _Integers are signed_. `integer`s and `decimal`s are quite
+similar to `boolean`s, we have the `-- integer foo: 10` syntax to define them.
+
+{ds.highlight: Strings in FTD do not use quotes}, so a string is defined like
+`-- string name: amitu`. Also you can define multi-line string like this:
+
+-- ds.code: multi-line string in ftd
+lang: ftd
+
+\-- string about-this-workshop:
+
+FTD language is a possible replacement for JavaScript/React to build
+web front-ends. In this workshop you will learn the basics of FTD and
+build a web app that talks to existing web services. We will build an
+application for managing to-do lists from scratch.
+
+Basic knowledge of HTTP API is needed, but no prior knowledge of
+front-end is required.
+
+The workshop is taught by the creators of FTD, and you will learn
+about the motivation and design decisions that shaped FTD as well.
+
+In this hands-on workshop we will go through a series of exercises in
+stages and write code to get the application working. Participants are
+required to have a decent computer, but there is no need to install any
+software before hand (other than your favorite editor).
+
+-- ds.markdown:
+
+{ds.highlight: This makes FTD quite suitable for authoring content.}
+
+-- ds.h1: Task: Fix FTD files
+
+Go through [numbers.ftd](https://github.com/ftd-lang/ftd-workshop/blob/main/01-data/03-numbers-and-strings/numbers.ftd)
+and [strings.ftd](https://github.com/ftd-lang/ftd-workshop/blob/main/01-data/03-numbers-and-strings/strings.ftd) as per
+instructions given in the file.
+
+-- ds.h1: You Are Done
+
+-- ds.markdown:
+
+You have learnt basics of numbers and strings. {ds.highlight: Lets move on to
+[records now](id: ws-records)} or go back to [the workshop page](id: workshop).
+
+
+-- container: ws-numbers-and-strings.wrapper.right-sidebar
+-- workshop.sidebar:
