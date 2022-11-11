@@ -28,7 +28,7 @@ How to use?
 Add below depedencies into your `FPM.ftd` file
 
 -- ftd.column:
-margin-top: -54
+margin-top: -44
 
 -- ds.code: Locate FPM.ftd and copy below into it
 lang: ftd
@@ -36,6 +36,8 @@ lang: ftd
 \-- fpm.dependency: fifthtry.github.io/workshop-page as ws
 
 \-- fpm.auto-import: ws
+
+
 
 -- ftd.column:
 margin-top: 24

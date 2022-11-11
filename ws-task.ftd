@@ -10,7 +10,7 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-task-completed
 
--- ws.understood what-are-task-button: Completed
+-- ws.understood what-are-task-button: Done
 $on-click$: $what-are-task-completed = true
 $on-click$: message-host $what-are-task-object
 $task-status: $what-are-task-completed
@@ -20,10 +20,13 @@ $task-status: $what-are-task-completed
 id: ws-page-task
 sidebar: true
 
+How to Use?
+
+Add below depedencies into your `FPM.ftd` file
 
 
 -- ftd.column:
-margin-top: -54
+margin-top: -44
 width: fill
 
 -- ds.code: Add below depedencies into your FPM.ftd file
@@ -43,7 +46,7 @@ Let's understand how to use `-- ws.task:` component.
 
 
 -- ftd.column:
-margin-top: -24
+margin-top: -14
 width: fill
 
 -- ds.code: Add below lines into your `workshop.ftd` file
@@ -56,8 +59,8 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-task-completed
 
-\-- understood what-are-task-button: Completed --> button title
-$on-click$: toggle $what-are-task-completed
+\-- understood what-are-task-button: Done --> button title
+$on-click$: $what-are-task-completed = true
 $on-click$: message-host $what-are-task-object
 $task-status: $what-are-task-completed
 
@@ -77,7 +80,6 @@ lang: ftd
 
 \-- ws.task: task title
 id: ws-page --> ID is importart to swich from one container to another
-sidebar: true --> Remove this line if sidebar not needed
 $status: $what-are-task-completed --> sets localstorage once task completed
 
 Some task body here. You can also include `FTD` components like 
@@ -91,16 +93,22 @@ lang: ftd
 
 \-- task: What is FPM CLI?
 $status: $what-are-task-understood
-button: what-are-task-button:
 
 FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
 Learn more about it on fpm.dev
 
+-- ftd.column:
+margin-top: 24
+width: fill
+
+-- ds.markdown:
+
+See working demo below, click on `Done` button to see the how it works.
+
 
 -- ws.task: What is FPM CLI?
 $status: $what-are-task-completed
-button: what-are-task-button:
 
 FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 

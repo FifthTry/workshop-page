@@ -10,7 +10,7 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-lesson-completed
 
--- ws.understood what-are-lesson-button: Completed
+-- ws.understood what-are-lesson-button: Understood
 $on-click$: $what-are-lesson-completed = true
 $on-click$: message-host $what-are-lesson-object
 $lesson-status: $what-are-lesson-completed
@@ -21,9 +21,13 @@ id: ws-page-lesson
 sidebar: true
 
 
+How to Use?
+
+Add below depedencies into your `FPM.ftd` file
+
 
 -- ftd.column:
-margin-top: -54
+margin-top: -44
 width: fill
 
 -- ds.code: Add below depedencies into your FPM.ftd file
@@ -34,7 +38,7 @@ lang: ftd
 \-- fpm.auto-import: ws
 
 -- ftd.column:
-margin-top: 24
+margin-top: -14
 width: fill
 
 -- ds.h3: How to create new lesson?
@@ -43,7 +47,6 @@ Let's understand how to use `-- ws.lesson:` component.
 
 
 -- ftd.column:
-margin-top: -24
 width: fill
 
 -- ds.code: Add below lines into your `workshop.ftd` file
@@ -56,8 +59,8 @@ $always-include$: true
 function: ls.set-boolean
 variable: $what-are-lesson-completed
 
-\-- understood what-are-lesson-button: Completed --> button title
-$on-click$: toggle $what-are-lesson-completed
+\-- understood what-are-lesson-button: Understood --> button title
+$on-click$: $what-are-lesson-completed = true
 $on-click$: message-host $what-are-lesson-object
 $lesson-status: $what-are-lesson-completed
 
@@ -75,9 +78,9 @@ if required.
 -- ds.code: How to use `-- ws.lesson`? use below code snippet
 lang: ftd
 
+
 \-- ws.lesson: lesson title
 id: ws-page --> ID is importart to swich from one container to another
-sidebar: true --> Remove this line if sidebar not needed
 $status: $what-are-lesson-completed --> sets localstorage once lesson completed
 
 Some lesson body here. You can also include `FTD` components like 
@@ -91,12 +94,19 @@ lang: ftd
 
 \-- lesson: What is FPM CLI?
 $status: $what-are-lesson-understood
-button: what-are-lesson-button:
 
 FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
 Learn more about it on fpm.dev
 
+
+-- ftd.column:
+margin-top: 24
+width: fill
+
+-- ds.markdown:
+
+See working demo below, click on `Understood` button to see the how it works.
 
 -- ws.lesson: What is FPM CLI?
 $status: $what-are-lesson-completed
