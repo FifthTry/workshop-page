@@ -22,7 +22,7 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/workshop-page/main
 
 -- fpm.sitemap:
 
-#Home: /index
+#Home: /
 
 - Part 1 - Working With Data: 
 
