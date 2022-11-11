@@ -170,8 +170,8 @@ width: fill
 open: true
 append-at: content-wrap
 boolean $status: 
-background-image: $assets.files.images.6917-ai.png
-background-color: $fpm.color.main.background.step-1
+;background-image: $assets.files.images.6917-ai.png
+background-color: $fpm.color.main.background.base
 gradient-colors: #E7B526, #17C3A6
 gradient-direction: to top
 boolean sidebar: false
@@ -327,7 +327,7 @@ sticky: true
 top: 0
 right: 48
 height: calc 100vh - 0px
-background-color:  $fpm.color.main.background.overlay
+background-color:  $fpm.color.main.background.step-1
 overflow-y: auto
 align: top-right
 margin-right: 48
@@ -525,7 +525,7 @@ top: 0
 bottom: 0
 left: 0
 right: 0
-background-color:  $fpm.color.main.background.overlay
+background-color:$fpm.color.main.background.overlay
 z-index: 1
 width: fill
 $on-click$: $open-right-sidebar-info = false
@@ -579,7 +579,7 @@ height: calc 100vh - 0px
 overflow-y: auto
 width: 450
 align: top-left
-background-color:  $fpm.color.main.background.overlay
+background-color:  $fpm.color.main.background.step-1
 border-radius: 8
 padding-left: 24
 padding-top: 24
@@ -617,7 +617,8 @@ role: $fpm.type.fine-print
 min-width: fit-content
 margin-bottom: 16
 ;margin-left: $fpm.space.space-3
-color: $fpm.color.main.accent.primary
+color: $fpm.color.main.text
+color if $toc.is-active: $fpm.color.main.cta-primary.base
 
 --- ftd.text:
 if: $toc.url is null
@@ -626,7 +627,7 @@ role: $fpm.type.fine-print
 min-width: fit-content
 margin-bottom: 16
 color: $fpm.color.main.text
-color if $toc.is-disabled: $fpm.color.main.cta-primary.base
+color if $toc.is-active: $fpm.color.main.cta-primary.base
 padding-left: 10
 
 --- childrens:
@@ -676,7 +677,8 @@ role: $fpm.type.fine-print
 min-width: fit-content
 margin-bottom: 16
 margin-left: $fpm.space.space-3
-color: $fpm.color.main.accent.primary
+color: $fpm.color.main.text
+color if $toc.is-active: $fpm.color.main.cta-primary.base
 
 --- container: ftd.main
 

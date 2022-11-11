@@ -42,7 +42,7 @@ optional fpm.toc-item current-subsection:
 optional fpm.toc-item current-page: 
 width: fill
 ftd.color body-text-color: $fpm.color.main.text
-background-color: $fpm.color.main.background.step-1
+background-color: $fpm.color.main.background.base
 
 --- mobile-sidebar:
 if: $sidebar-open
@@ -110,7 +110,7 @@ link: $site-url
 --- ftd.image:
 if: $site-logo is not null
 src: $site-logo
-width: 64
+;width: 64
 height: auto
 width if $is-mobile: 78
 height if $is-mobile: 32
@@ -145,7 +145,7 @@ is-active: $obj.is-active
 --- ftd.row:
 width: fill
 padding-horizontal: 48
-background-color: $fpm.color.main.background.base
+background-color: $fpm.color.main.background.step-1
 
 --- ftd.row:
 width: fill
@@ -453,15 +453,15 @@ align: center
 margin-left: 20
 white-space: nowrap
 style: heavy
-color: $fpm.color.main.text
-color if $is-active: $fpm.color.main.text-strong
+color: $fpm.color.main.text-strong
+color if $is-active: $fpm.color.main.cta-primary.base
 
 --- ftd.text: $title
 if: $link is not null 
 padding-bottom: 4
 role:$fpm.type.copy-tight
-color: $fpm.color.main.text
-color if $is-active: $fpm.color.main.text
+color: $fpm.color.main.text-strong
+color if $is-active: $fpm.color.main.cta-primary.base
 link: $link
 align: center
 margin-left: 20
@@ -490,7 +490,6 @@ role: $fpm.type.fine-print
 link: $link
 white-space: nowrap
 padding-left: 10
-color: $fpm.color.main.text-strong
 margin-left: 10
 
 --- ftd.text: $title
@@ -498,6 +497,5 @@ if: $link is null
 role: $fpm.type.fine-print
 /white-space: nowrap
 padding-left: 10
-color: $fpm.color.main.text-strong
 margin-left: 20
 cursor: auto
