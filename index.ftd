@@ -24,7 +24,7 @@ $processor$: sitemap
 dark: $assets.files.images.site-icon.svg.dark
 light: $assets.files.images.site-icon.svg.light
 
--- string site-url: NA
+-- string site-url: /
 
 
 
