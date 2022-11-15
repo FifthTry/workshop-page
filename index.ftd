@@ -1,6 +1,6 @@
 -- import: fifthtry.github.io/workshop-page/assets
 -- import: fifthtry.github.io/package-doc/doc as pd
--- import: fifthtry.github.io/workshop-page/header as h 
+-- import: fifthtry.github.io/header as h 
 
 
 
@@ -331,11 +331,14 @@ booelan right-sidebar: false
 
 --- h.header: 
 sections: $sections
+sub-sections: $sub-sections
+current-section: $current-section
+current-subsection: $current-subsection
+current-page: $current-page
 site-logo: $site-logo
 site-url: $site-url
+toc: $toc
 site-name: $site-name
-sub-sections: $sub-sections
-
 
 --- ftd.column:
 anchor: parent
@@ -344,121 +347,23 @@ bottom: 24
 
 --- button: 
 
+
 --- container: ftd.main
 
 --- ftd.column:
-width: fill
-id: main-row
-
---- ftd.row:
-width: fill
-background-color: $fpm.color.main.background.step-2
-id: change-container
-padding-horizontal: $fpm.space.space-5
-$on-click$: toggle $show-section 
-;padding-vertical: 12
-
---- ftd.row:
-width: fill
-padding-vertical: $fpm.space.space-4
-spacing: 4
-id: selection-container
-
---- ftd.text: $current-subsection.title
-if: $current-subsection.title is not null
-role: $fpm.type.label-small
-color: $fpm.color.main.text-strong
-link: $current-subsection.url
-white-space: nowrap
-
---- ftd.row:
-if: $current-subsection.title is not null
-
---- ftd.row:
-if: $current-page.title is not null
-
---- ftd.text: ->
-role: $fpm.type.label-small
-color: $fpm.color.main.text-strong
-white-space: nowrap
-
---- container: selection-container
-
---- ftd.text: $current-page.title 
-if:  $current-page.title is not null
-role: $fpm.type.label-small
-color: $fpm.color.main.text-strong
-link: $current-page.url 
-white-space: nowrap
-
---- container: change-container
-
---- ftd.row:
-align: right
-height: fill
-
-
---- ftd.row:
-align: center
-width: fill
-
-
---- ftd.image: 
-if: not $show-section 
-src: $assets.files.images.down-arrow.svg
-height: auto
-width: 12
-
-
---- ftd.image: 
-if:  $show-section 
-src: $assets.files.images.up-arrow.svg
-height: auto
-width: 12
-
---- container: change-container
-
---- ftd.column: 
-if: $show-section
-width: fill
-anchor: parent
-background-color: $fpm.color.main.background.step-2
-top: 48
-left:0
-z-index: 109
-
---- ftd.column:
-width: fill
-spacing: 8
-padding-horizontal: 24
-padding-vertical: 12
-overflow-x: auto
-
---- render-toc-mobile:
-if: $toc is not empty
-toc-obj: $toc
-$status: $status
-
---- container: main-row
-
---- ftd.column:
-width: fill
 id: page-wrap-mobile
-
-
---- ftd.column:
-id: wrapper
 width: fill
 align: top
 min-height: calc 100vh
+height: fill
 padding-horizontal: 20
-padding-vertical: 20
+padding-top: 20
+padding-bottom: 84
 
 
 --- ftd.row:
 width: fill
 id: heading-container
-
 
 --- ds.h1: $title
 if: $title is not null
@@ -475,14 +380,14 @@ src: $assets.files.images.info-icon.svg
 width: 36
 $on-click$: toggle $open-right-sidebar-info
 
---- container: wrapper
+--- container: page-wrap-mobile
 
 --- ds.markdown:
 if: $body is not null
 
 $body
 
---- container: page-wrap-mobile
+--- container: ftd.main
 
 --- ftd.column:
 if: $open-right-sidebar-info
@@ -491,24 +396,23 @@ top: 0
 bottom: 0
 left: 0
 right: 0
-background-color:  $fpm.color.main.background.overlay
+background-color:$fpm.color.main.background.overlay
 z-index: 1
 width: fill
 $on-click$: $open-right-sidebar-info = false
-
 
 --- ftd.column:
 width: fill
 
 --- ftd.image:
 src: $assets.files.images.cross.svg
-height: 32
+height: 16
 width: auto
-margin-top: 8
-margin-left: 8
+margin-top: 30
+margin-left: 16
 $on-click$: $open-right-sidebar-info = false 
 
---- container: page-wrap-mobile
+--- container: ftd.main
 
 --- ftd.column:
 if: $open-right-sidebar-info
@@ -516,11 +420,12 @@ width: calc 100% - 48px
 height: calc 100vh - 0px
 overflow-y: auto
 align: top-right
+padding-top:$fpm.space.space-5
 anchor: parent
 right: 0
 top: 0
 background-color: $fpm.color.main.background.step-1
-z-index: 1
+z-index: 99
 
 --- ftd.column:
 id: right-sidebar-mobile
@@ -575,6 +480,17 @@ fpm.toc-item toc:
 id: toc-instance
 boolean $status: 
 
+--- ftd.row:
+if: $toc.url is not null
+width: fill
+spacing: 8
+
+--- ftd.image:
+if: $toc.font-icon is not null
+src: $toc.font-icon
+height: 14
+width: auto
+
 --- ftd.text: 
 if: $toc.url is not null
 link: $toc.url
@@ -586,8 +502,20 @@ margin-bottom: 16
 color: $fpm.color.main.text
 color if $toc.is-active: $fpm.color.main.cta-primary.base
 
---- ftd.text:
+--- container: ftd.main
+
+--- ftd.row:
 if: $toc.url is null
+width: fill
+spacing: 8
+
+--- ftd.image:
+if: $toc.font-icon is not null
+src: $toc.font-icon
+height: 14
+width: auto
+
+--- ftd.text:
 text: $toc.title
 role: $fpm.type.fine-print
 min-width: fit-content
@@ -595,6 +523,9 @@ margin-bottom: 16
 color: $fpm.color.main.text
 color if $toc.is-active: $fpm.color.main.cta-primary.base
 padding-left: 10
+
+
+--- container: ftd.main
 
 --- childrens:
 $loop$: $toc.children as $obj
@@ -615,26 +546,15 @@ fpm.toc-item toc:
 boolean $status: 
 
 --- ftd.row:
+if: $toc.url is not null
 width: fill
-id: toc-container
+spacing: 8
 
---- ftd.image: 
-if: $status
-src: $assets.files.images.checked.svg
-margin-top: 0
-margin-left: 2
-width: 14
-
---- container: toc-container
-
---- ftd.image: 
-if: not $status
-src: $assets.files.images.unchecked.svg
-margin-top: 0
-margin-left: 2
-width: 14
-
---- container: toc-container
+--- ftd.image:
+if: $toc.font-icon is not null
+src: $toc.font-icon
+height: 14
+width: auto
 
 --- ftd.text: 
 link: $toc.url

@@ -7,7 +7,7 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/workshop-page/main
 -- fpm.dependency: fifthtry.github.io/doc-site as ds
 -- fpm.dependency: fifthtry.github.io/button as button
 -- fpm.dependency: fifthtry.github.io/admonitions as cbox
-
+-- fpm.dependency: fifthtry.github.io/header as h
 
 
 -- fpm.auto-import: ds
@@ -35,7 +35,10 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/workshop-page/main
 - Part 1 - Working With Data: 
 
   - 1 - Hello World: hello-world/
+  icon: /images/primary-favorites.svg
 
   - 2 - Booleans: booleans/
+  icon: /images/primary-favorites.svg
 
   - 3 - Numbers And Strings: numbers-and-strings/
+  icon: /images/primary-favorites.svg
