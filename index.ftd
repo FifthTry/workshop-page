@@ -1,6 +1,6 @@
 -- import: fifthtry.github.io/workshop-page/assets
 -- import: fifthtry.github.io/package-doc/doc as pd
--- import: fifthtry.github.io/header as h 
+-- import: fifthtry.github.io/workshop-page/header as h 
 
 
 
@@ -331,14 +331,11 @@ booelan right-sidebar: false
 
 --- h.header: 
 sections: $sections
-sub-sections: $sub-sections
-current-section: $current-section
-current-subsection: $current-subsection
-current-page: $current-page
 site-logo: $site-logo
 site-url: $site-url
-toc: $toc
 site-name: $site-name
+sub-sections: $sub-sections
+
 
 --- ftd.column:
 anchor: parent
@@ -346,8 +343,6 @@ right: 24
 bottom: 24
 
 --- button: 
-
---- container: ftd.main
 
 --- container: ftd.main
 
@@ -402,15 +397,18 @@ white-space: nowrap
 align: right
 height: fill
 
+
 --- ftd.row:
 align: center
 width: fill
+
 
 --- ftd.image: 
 if: not $show-section 
 src: $assets.files.images.down-arrow.svg
 height: auto
 width: 12
+
 
 --- ftd.image: 
 if:  $show-section 
@@ -444,19 +442,23 @@ $status: $status
 --- container: main-row
 
 --- ftd.column:
+width: fill
 id: page-wrap-mobile
+
+
+--- ftd.column:
+id: wrapper
 width: fill
 align: top
 min-height: calc 100vh
-height: fill
 padding-horizontal: 20
-padding-top: 20
-padding-bottom: 84
-z-index: 99
+padding-vertical: 20
+
 
 --- ftd.row:
 width: fill
 id: heading-container
+
 
 --- ds.h1: $title
 if: $title is not null
@@ -473,14 +475,14 @@ src: $assets.files.images.info-icon.svg
 width: 36
 $on-click$: toggle $open-right-sidebar-info
 
---- container: page-wrap-mobile
+--- container: wrapper
 
 --- ds.markdown:
 if: $body is not null
 
 $body
 
---- container: ftd.main
+--- container: page-wrap-mobile
 
 --- ftd.column:
 if: $open-right-sidebar-info
@@ -489,23 +491,24 @@ top: 0
 bottom: 0
 left: 0
 right: 0
-background-color:$fpm.color.main.background.overlay
+background-color:  $fpm.color.main.background.overlay
 z-index: 1
 width: fill
 $on-click$: $open-right-sidebar-info = false
+
 
 --- ftd.column:
 width: fill
 
 --- ftd.image:
 src: $assets.files.images.cross.svg
-height: 16
+height: 32
 width: auto
-margin-top: 30
-margin-left: 16
+margin-top: 8
+margin-left: 8
 $on-click$: $open-right-sidebar-info = false 
 
---- container: ftd.main
+--- container: page-wrap-mobile
 
 --- ftd.column:
 if: $open-right-sidebar-info
@@ -513,12 +516,11 @@ width: calc 100% - 48px
 height: calc 100vh - 0px
 overflow-y: auto
 align: top-right
-padding-top:$fpm.space.space-5
 anchor: parent
 right: 0
 top: 0
 background-color: $fpm.color.main.background.step-1
-z-index: 99
+z-index: 1
 
 --- ftd.column:
 id: right-sidebar-mobile

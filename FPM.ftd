@@ -7,7 +7,7 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/workshop-page/main
 -- fpm.dependency: fifthtry.github.io/doc-site as ds
 -- fpm.dependency: fifthtry.github.io/button as button
 -- fpm.dependency: fifthtry.github.io/admonitions as cbox
--- fpm.dependency: fifthtry.github.io/header as h
+
 
 
 -- fpm.auto-import: ds
