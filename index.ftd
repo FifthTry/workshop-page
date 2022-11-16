@@ -131,10 +131,11 @@ optional fpm.toc-item current-section: $sitemap.current-section
 optional fpm.toc-item current-subsection: $sitemap.current-subsection
 optional fpm.toc-item current-page: $sitemap.current-page
 ftd.ui button: what-are-chapter-button: 
+boolean show-chapter-button: false
 width: fill
 open: true
 append-at: content-wrap
-boolean $status:
+optional boolean $status:
 background-image: $assets.files.images.1127-ai.svg
 background-color: $fpm.color.main.background.base
 gradient-colors: #E7B526, #17C3A6
@@ -160,6 +161,7 @@ current-subsection: $current-subsection
 current-page: $current-page
 sub-sections: $sub-sections
 right-sidebar: $sidebar
+show-chapter-button: $show-chapter-button
 
 --- container: ftd.main
 
@@ -176,6 +178,7 @@ current-subsection: $current-subsection
 current-page: $current-page
 sub-sections: $sub-sections
 right-sidebar: $sidebar
+show-chapter-button: $show-chapter-button
 
 
 
@@ -195,6 +198,7 @@ fpm.toc-item list sub-sections:
 optional fpm.toc-item current-section:
 optional fpm.toc-item current-page:
 optional fpm.toc-item current-subsection:
+boolean show-chapter-button:
 ftd.ui button:
 width: fill
 open: true
@@ -245,6 +249,7 @@ $body
 --- container: wrap-page-one 
 
 --- ftd.column:
+if: $show-chapter-button
 anchor: parent
 right: 0
 bottom: 24
@@ -322,11 +327,12 @@ fpm.toc-item list sub-sections:
 optional fpm.toc-item current-section:
 optional fpm.toc-item current-page:
 optional fpm.toc-item current-subsection:
+boolean show-chapter-button:
 ftd.ui button:
 width: fill
 open: true
 append-at: page-wrap-mobile
-boolean $status: 
+optional boolean $status: 
 booelan right-sidebar: false
 
 --- h.header: 
@@ -341,6 +347,7 @@ toc: $toc
 site-name: $site-name
 
 --- ftd.column:
+if: $show-chapter-button
 anchor: parent
 right: 24
 bottom: 24
@@ -595,7 +602,7 @@ margin-top: $fpm.space.space-6
 margin-bottom: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-6
 padding-top: $fpm.space.space-6
-padding-bottom: $fpm.space.space-10
+padding-bottom: 76
 border-radius: 6
 background-color: $fpm.color.main.background.step-1
 background-color if $status:  $fpm.color.main.cta-tertiary.base
@@ -659,7 +666,7 @@ margin-top: $fpm.space.space-6
 margin-bottom: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-6
 padding-top: $fpm.space.space-6
-padding-bottom: $fpm.space.space-10
+padding-bottom: 76
 border-radius: 6
 background-color: $fpm.color.main.background.step-1
 background-color if $status:  $fpm.color.main.cta-tertiary.base
