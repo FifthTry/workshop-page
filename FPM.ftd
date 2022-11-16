@@ -35,10 +35,10 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/workshop-page/main
 - Part 1 - Working With Data: 
 
   - 1 - Hello World: hello-world/
-  icon: /images/primary-favorites.svg
+    icon: images/primary-favorites.png
 
   - 2 - Booleans: booleans/
-  icon: /images/primary-favorites.svg
+    icon: images/primary-favorites.png
 
   - 3 - Numbers And Strings: numbers-and-strings/
-  icon: /images/primary-favorites.svg
+    icon: images/primary-favorites.png
