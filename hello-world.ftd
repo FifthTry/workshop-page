@@ -148,3 +148,8 @@ You have installed fpm and created your first fpm package. Good job!
 -- container: ws-hello-world.content-wrap.right-sidebar
 
 -- ws.sidebar:
+
+
+-- container: ws-hello-world.content-wrap.right-sidebar-mobile
+
+-- ws.sidebar:
