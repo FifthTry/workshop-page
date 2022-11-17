@@ -18,7 +18,7 @@ if: $ftd.device == mobile
 -- fpm.sitemap-data sitemap:
 $processor$: sitemap
 
--- optional string site-name: Workshop Page
+-- optional string site-name: 
 
 -- optional ftd.image-src site-logo:
 dark: $assets.files.images.site-icon.svg.dark
