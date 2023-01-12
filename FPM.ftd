@@ -4,8 +4,8 @@
 download-base-url: https://raw.githubusercontent.com/fifthtry/workshop-page/main
 
 -- fpm.dependency: fifthtry.github.io/color-doc as cs
+;-- fpm.dependency: fifthtry.github.io/forest-cs as cs
 -- fpm.dependency: fifthtry.github.io/doc-site as ds
--- fpm.dependency: fifthtry.github.io/button as button
 -- fpm.dependency: fifthtry.github.io/admonitions as cbox
 -- fpm.dependency: fifthtry.github.io/header as h
 
@@ -13,7 +13,6 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/workshop-page/main
 -- fpm.auto-import: ds
 -- fpm.auto-import: cs
 -- fpm.auto-import: fpm
--- fpm.auto-import: button
 -- fpm.auto-import: cbox
 -- fpm.auto-import: fifthtry.github.io/workshop-page/FPM/config
 

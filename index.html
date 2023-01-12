@@ -23911,8 +23911,6 @@ line-height: 18px
 
 
 
-
-
 @font-face { unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 font-style: normal;
 font-weight: 100;
@@ -26272,13 +26270,6 @@ document.addEventListener("keydown", function(event) {
 
 
 
-if (global_keys["ArrowLeft"] && buffer.join(',').includes("ArrowLeft")) {
-    window.ftd.handle_event(event, 'main', '[{"action":"decrement","target":"fifthtry.github.io/workshop-page/#current-app@0,1,1","parameters":{"clamp":[{"value":0,"reference":null},{"value":0,"reference":"fifthtry.github.io/workshop-page/#apps@0,1,1.len"}]}}]', this);
-    buffer = [];
-    global_keys[event.key] = false;
-    return;
-}
-
 if (global_keys["ArrowRight"] && buffer.join(',').includes("ArrowRight")) {
     window.ftd.handle_event(event, 'main', '[{"action":"increment","target":"fifthtry.github.io/workshop-page/#current-app@0,1,1","parameters":{"clamp":[{"value":0,"reference":null},{"value":0,"reference":"fifthtry.github.io/workshop-page/#apps@0,1,1.len"}]}}]', this);
     buffer = [];
@@ -26286,8 +26277,8 @@ if (global_keys["ArrowRight"] && buffer.join(',').includes("ArrowRight")) {
     return;
 }
 
-if (global_keys["Escape"] && buffer.join(',').includes("Escape")) {
-    window.ftd.handle_event(event, 'main', '[{"action":"set-value","target":"fifthtry.github.io/workshop-page/#is-open@0,1,1","parameters":{"value":[{"value":false,"reference":null},{"value":"boolean","reference":null}]}}]', this);
+if (global_keys["ArrowLeft"] && buffer.join(',').includes("ArrowLeft")) {
+    window.ftd.handle_event(event, 'main', '[{"action":"decrement","target":"fifthtry.github.io/workshop-page/#current-app@0,1,1","parameters":{"clamp":[{"value":0,"reference":null},{"value":0,"reference":"fifthtry.github.io/workshop-page/#apps@0,1,1.len"}]}}]', this);
     buffer = [];
     global_keys[event.key] = false;
     return;
@@ -26295,6 +26286,13 @@ if (global_keys["Escape"] && buffer.join(',').includes("Escape")) {
 
 if (global_keys["Shift"] && global_keys["Shift"] && buffer.join(',').includes("Shift,Shift")) {
     window.ftd.handle_event(event, 'main', '[{"action":"set-value","target":"fifthtry.github.io/workshop-page/#is-open@0,1,1","parameters":{"value":[{"value":true,"reference":null},{"value":"boolean","reference":null}]}}]', this);
+    buffer = [];
+    global_keys[event.key] = false;
+    return;
+}
+
+if (global_keys["Escape"] && buffer.join(',').includes("Escape")) {
+    window.ftd.handle_event(event, 'main', '[{"action":"set-value","target":"fifthtry.github.io/workshop-page/#is-open@0,1,1","parameters":{"value":[{"value":false,"reference":null},{"value":"boolean","reference":null}]}}]', this);
     buffer = [];
     global_keys[event.key] = false;
     return;
