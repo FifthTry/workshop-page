@@ -3,31 +3,37 @@
 
 
 
--- boolean $what-are-task-completed: false
+
+/-- boolean $what-are-task-completed: false
 $always-include$: true
 
--- object what-are-task-object:
+/-- object what-are-task-object:
 function: ls.set-boolean
 variable: $what-are-task-completed
 
--- ws.understood what-are-task-button: Done
+/-- ws.understood what-are-task-button: Done
 $on-click$: $what-are-task-completed = true
 $on-click$: message-host $what-are-task-object
 $task-status: $what-are-task-completed
 
 
+
+
+
+
+
+
+
+
 -- ds.page: Using `-- task` component:
-id: ws-page-task
-sidebar: true
 
 How to Use?
 
 Add below depedencies into your `FPM.ftd` file
 
-
 -- ftd.column:
-margin-top: -44
-width: fill
+margin-top.px: -44
+width: fill-container
 
 -- ds.code: Add below depedencies into your FPM.ftd file
 lang: ftd
@@ -37,17 +43,16 @@ lang: ftd
 \-- fpm.auto-import: ws
 
 -- ftd.column:
-margin-top: 24
-width: fill
+margin-top.px: 24
+width: fill-container
 
 -- ds.h3: How to create new task?
 
 Let's understand how to use `-- ws.task:` component.
 
-
 -- ftd.column:
-margin-top: -14
-width: fill
+margin-top.px: -14
+width: fill-container
 
 -- ds.code: Add below lines into your `workshop.ftd` file
 lang: ftd
@@ -64,11 +69,9 @@ $on-click$: $what-are-task-completed = true
 $on-click$: message-host $what-are-task-object
 $task-status: $what-are-task-completed
 
-
 -- ftd.column:
-margin-top: 24
-width: fill
-
+margin-top.px: 24
+width: fill-container
 
 -- ds.markdown:
 
@@ -85,11 +88,8 @@ $status: $what-are-task-completed --> sets localstorage once task completed
 Some task body here. You can also include `FTD` components like 
 code-block etc in this section of task body.
 
-
-
 -- ds.code: Add below lines into your FPM.ftd file
 lang: ftd
-
 
 \-- task: What is FPM CLI?
 $status: $what-are-task-understood
@@ -99,13 +99,12 @@ FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 Learn more about it on fpm.dev
 
 -- ftd.column:
-margin-top: 24
-width: fill
+margin-top.px: 24
+width: fill-container
 
 -- ds.markdown:
 
 See working demo below, click on `Done` button to see the how it works.
-
 
 -- ws.task: What is FPM CLI?
 $status: $ws.what-are-task-completed
@@ -114,10 +113,4 @@ FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
 Learn more about it on fpm.dev
 
--- container: ws-page-task.wrapper.right-sidebar
-
--- ws.sidebar:
-
--- container: ws-page-task.wrapper.right-sidebar-mobile
-
--- ws.sidebar:
+-- end: ds.page

@@ -3,32 +3,16 @@
 
 
 
--- boolean $what-are-lesson-completed: false
-$always-include$: true
-
--- object what-are-lesson-object:
-function: ls.set-boolean
-variable: $what-are-lesson-completed
-
--- ws.understood what-are-lesson-button: Understood
-$on-click$: $what-are-lesson-completed = true
-$on-click$: message-host $what-are-lesson-object
-$lesson-status: $what-are-lesson-completed
-
-
 -- ds.page: Using `-- lesson` component:
-id: ws-page-lesson
-sidebar: true
-
+$sidebar: true
 
 How to Use?
 
 Add below depedencies into your `FPM.ftd` file
 
-
 -- ftd.column:
-margin-top: -44
-width: fill
+margin-top.px: -44
+width: fill-container
 
 -- ds.code: Add below depedencies into your FPM.ftd file
 lang: ftd
@@ -38,16 +22,15 @@ lang: ftd
 \-- fpm.auto-import: ws
 
 -- ftd.column:
-margin-top: -14
-width: fill
+margin-top.px: -14
+width: fill-container
 
 -- ds.h3: How to create new lesson?
 
 Let's understand how to use `-- ws.lesson:` component.
 
-
 -- ftd.column:
-width: fill
+width: fill-container
 
 -- ds.code: Add below lines into your `workshop.ftd` file
 lang: ftd
@@ -64,11 +47,9 @@ $on-click$: $what-are-lesson-completed = true
 $on-click$: message-host $what-are-lesson-object
 $lesson-status: $what-are-lesson-completed
 
-
 -- ftd.column:
-margin-top: 24
-width: fill
-
+margin-top.px: 24
+width: fill-container
 
 -- ds.markdown:
 
@@ -78,7 +59,6 @@ if required.
 -- ds.code: How to use `-- ws.lesson`? use below code snippet
 lang: ftd
 
-
 \-- ws.lesson: lesson title
 id: ws-page --> ID is importart to swich from one container to another
 $status: $what-are-lesson-completed --> sets localstorage once lesson completed
@@ -86,11 +66,8 @@ $status: $what-are-lesson-completed --> sets localstorage once lesson completed
 Some lesson body here. You can also include `FTD` components like 
 code-block etc in this section of lesson body.
 
-
-
 -- ds.code: Add below lines into your FPM.ftd file
 lang: ftd
-
 
 \-- lesson: What is FPM CLI?
 $status: $what-are-lesson-understood
@@ -99,29 +76,19 @@ FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
 Learn more about it on fpm.dev
 
-
 -- ftd.column:
-margin-top: 24
-width: fill
+margin-top.px: 24
+width: fill-container
 
 -- ds.markdown:
 
 See working demo below, click on `Understood` button to see the how it works.
 
 -- ws.lesson: What is FPM CLI?
-$status: $what-are-lesson-completed
-button: what-are-lesson-button:
+$status: $ws.what-are-lesson-understoo
 
 FPM CLI is used to work with FTD files. Learn more about it on fpm.dev
 
 Learn more about it on fpm.dev
 
--- container: ws-page-lesson.wrapper.right-sidebar
-
--- ws.sidebar:
-
--- container: ws-page-lesson.wrapper.right-sidebar-mobile
-
--- ws.sidebar:
-
-
+--  end: ds.page

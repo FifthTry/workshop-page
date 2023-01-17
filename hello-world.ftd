@@ -1,59 +1,57 @@
 -- import: fifthtry.github.io/workshop-page as ws
 
 
--- boolean $what-are-chapter-completed: false
+/-- boolean $what-are-chapter-completed: false
 $always-include$: true
 
--- object what-are-chapter-object:
+/-- object what-are-chapter-object:
 function: ls.set-boolean
 variable: $what-are-chapter-completed
 
--- ws.understood what-are-chapter-button: Completed
+/-- ws.understood what-are-chapter-button: Completed
 $on-click$: $what-are-chapter-completed = true
 $on-click$: message-host $what-are-chapter-object
 $chapter-status: $what-are-chapter-completed
 
 
--- boolean $what-are-task-completed: false
+/-- boolean $what-are-task-completed: false
 $always-include$: true
 
--- object what-are-task-object:
+/-- object what-are-task-object:
 function: ls.set-boolean
 variable: $what-are-task-completed
 
--- ws.understood what-are-task-button: Done
+/-- ws.understood what-are-task-button: Done
 $on-click$: $what-are-task-completed = true
 $on-click$: message-host $what-are-task-object
 $task-status: $what-are-task-completed
 
--- boolean $what-are-lesson-completed: false
+/-- boolean $what-are-lesson-completed: false
 $always-include$: true
 
--- object what-are-lesson-object:
+/-- object what-are-lesson-object:
 function: ls.set-boolean
 variable: $what-are-lesson-completed
 
--- ws.understood what-are-lesson-button: Understood
+/-- ws.understood what-are-lesson-button: Understood
 $on-click$: $what-are-lesson-completed = true
 $on-click$: message-host $what-are-lesson-object
 $lesson-status: $what-are-lesson-completed
 
 -- ws.chapter: Hello World
-id: ws-hello-world
-sidebar: true
-$status: $what-are-chapter-completed
-button: what-are-chapter-button:
+$status: $ws.what-are-chapter-completed
+;;button: what-are-chapter-button:
 
 To use [FTD](https://ftd.dev) language we have to use [FPM](https://fpm.dev)
 the package manager and server for FTD.
 
 In this exercise **we will install FPM, and run a hello world program**.
 
--- container: ws-hello-world
+;;-- container: ws-hello-world
 
 -- ws.lesson: Lesson 1: Install FPM
-$status: $what-are-lesson-completed
-button: what-are-lesson-button:
+$status: $ws.what-are-lesson-understood
+;;button: what-are-lesson-button:
 
 
 To install {ds.highlight: fpm we will use the installation script}:
@@ -88,11 +86,13 @@ you are done with this step.
 If you get an error message in chat or speak up.
 
 
--- container: ws-hello-world
+-- end: ws.lesson
+
+;;-- container: ws-hello-world
 
 -- ws.task: Task 1: FPM.ftd
-$status: $what-are-task-completed
-button: what-are-task-button:
+$status: $ws.what-are-task-completed
+;;button: what-are-task-button:
 
 -- ds.markdown:
 
@@ -131,7 +131,7 @@ server address (http://127.0.0.1:8000 by default), you will see an empty page.
 
 Congrats, you have created your first FPM package!
 
--- container: ws-hello-world
+-- end: ws.task
 
 
 -- ds.h1: You are Done
@@ -144,12 +144,4 @@ You have installed fpm and created your first fpm package. Good job!
 [the workshop page](id: ws-hello-world).
 
 
-
--- container: ws-hello-world.content-wrap.right-sidebar
-
--- ws.sidebar:
-
-
--- container: ws-hello-world.content-wrap.right-sidebar-mobile
-
--- ws.sidebar:
+-- end: ws.chapter

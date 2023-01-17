@@ -1,26 +1,23 @@
 -- import: fifthtry.github.io/workshop-page/assets
--- import: fifthtry.github.io/package-doc/doc as pd
--- import: fifthtry.github.io/header as h 
+;;-- import: fifthtry.github.io/package-doc/doc as pd
+-- import: fifthtry.github.io/header as h
+-- import: fpm
+-- import: fpm/processors as pr
 
 
 
 
 
--- boolean is-mobile: false
+-- fpm.sitemap-data sitemap:
+$processor$: fpm.sitemap
 
 -- boolean show-section: false
 
--- is-mobile: true
-if: $ftd.device == mobile
-
--- boolean open-right-sidebar-info: false
-
--- fpm.sitemap-data sitemap:
-$processor$: sitemap
+-- boolean $open-right-sidebar-info: false
 
 -- optional string site-name: 
 
--- optional ftd.image-src site-logo:
+-- ftd.image-src site-logo:
 dark: $assets.files.images.site-icon.svg.dark
 light: $assets.files.images.site-icon.svg.light
 
@@ -30,17 +27,43 @@ light: $assets.files.images.site-icon.svg.light
 
 
 
--- boolean $what-are-lesson-understood: false
-$always-include$: true
 
--- object what-are-lesson-object:
+
+
+
+
+-- boolean $what-are-lesson-understood: false
+
+/-- object what-are-lesson-object:
 function: ls.set-boolean
 variable: $what-are-lesson-understood
 
--- understood what-are-lesson-button: Understood
-$on-click$: $what-are-lesson-understood = true
-$on-click$: message-host $what-are-lesson-object
+
+
+
+
+
+
+
+
+
+-- component what-are-lesson-button:
+caption title:
+
+-- ftd.column:
+$on-click$: $ftd.set-bool($a = $what-are-lesson-understood,v = true)
+;;$on-click$: message-host $what-are-lesson-object
+
+-- understood: Done
 $lesson-status: $what-are-lesson-understood
+
+-- end: ftd.column
+
+-- end: what-are-lesson-button
+
+
+
+
 
 
 
@@ -48,20 +71,33 @@ $lesson-status: $what-are-lesson-understood
 
 
 -- boolean $what-are-chapter-completed: false
-$always-include$: true
 
-
-
-
-
--- object what-are-chapter-object:
+/-- object what-are-chapter-object:
 function: ls.set-boolean
 variable: $what-are-chapter-completed
 
--- understood what-are-chapter-button: Completed
-$on-click$: $what-are-chapter-completed = true
-$on-click$: message-host $what-are-chapter-object
-$lesson-status: $what-are-chapter-completed
+
+
+
+
+
+
+
+
+
+-- component what-are-chapter-button:
+caption title:
+
+-- ftd.column:
+$on-click$: $ftd.set-bool($a = $what-are-chapter-completed,v = true)
+;;$on-click$: message-host $what-are-chapter-object
+
+-- understood: Done
+$chapter-status: $what-are-chapter-completed
+
+-- end: ftd.column
+
+-- end: what-are-chapter-button
 
 
 
@@ -74,28 +110,57 @@ $lesson-status: $what-are-chapter-completed
 
 
 -- boolean $what-are-task-completed: false
-$always-include$: true
 
--- object what-are-task-object:
+/-- object what-are-task-object:
 function: ls.set-boolean
 variable: $what-are-task-completed
 
--- understood what-are-task-button: Done
-$on-click$: $what-are-task-completed = true
-$on-click$: message-host $what-are-task-object
+
+
+
+
+
+
+
+
+
+-- component what-are-task-button:
+caption title:
+
+-- ftd.column:
+$on-click$: $ftd.set-bool($a = $what-are-task-completed,v = true)
+
+-- understood: Done
+;;$on-click$: message-host $what-are-task-object
 $task-status: $what-are-task-completed
+
+-- end: ftd.column
+
+-- end: what-are-task-button
+
+
+
+
+
 
 
 
 
 
 -- ds.page: Workshop Page
-id: doc-page
+$sidebar: true
+
+-- ds.page.extra-headers:
+
+-- sidebar:
+
+-- end: ds.page.extra-headers
+
+-- ds.page.body:
 
 Workshop page makes learning easy!
 
 Workshop page is designed to write documentation of web workshops. 
-
 
 We have designed and developed workshop page component using our FTD
 for you. If you want to create learning tutorial with adding task for
@@ -104,13 +169,7 @@ your users or students, use our workshop page.
 Its easy to install. Follow our [documentation](ws-chapter/) to make your 
 workshop live!
 
-
--- container: doc-page.wrapper.right-sidebar
-
--- sidebar:
-
-
-
+-- end: ds.page
 
 
 
@@ -130,25 +189,24 @@ fpm.toc-item list sub-sections: $sitemap.subsections
 optional fpm.toc-item current-section: $sitemap.current-section
 optional fpm.toc-item current-subsection: $sitemap.current-subsection
 optional fpm.toc-item current-page: $sitemap.current-page
-ftd.ui button: what-are-chapter-button: 
-boolean show-chapter-button: false
-optional boolean $status:
-boolean sidebar: false
-children container:
+boolean show-chapter-button: true
+optional boolean $status: false
+boolean $sidebar: false
+ftd.ui list extra-headers:
+children wrapper:
+
+-- ftd.ui list chapter.button: 
+
+-- what-are-chapter-button: Done
+
+-- end: chapter.button
 
 -- ftd.column:
-width: fill-container-container
+width: fill-container
 ;; background-image: $assets.files.images.1127-ai.svg -- TODO FTD 0.3
 background.solid: $inherited.colors.background.base
 ;; gradient-colors: #E7B526, #17C3A6 -- TODO FTD 0.3
 ;; gradient-direction: to top -- TODO FTD 0.3
-
-/--- window-popup:
-;if: $what-are-chapter-completed
-;if: $pop-up-status
-
--- ftd.column:
-if: { ftd.device != "mobile" }
 
 -- chapter-desktop: $chapter.title
 if: { ftd.device != "mobile" }
@@ -161,24 +219,15 @@ current-section: $chapter.current-section
 current-subsection: $chapter.current-subsection
 current-page: $chapter.current-page
 sub-sections: $chapter.sub-sections
-right-sidebar: $chapter.sidebar
+$right-sidebar: $chapter.sidebar
 show-chapter-button: $chapter.show-chapter-button
-
--- ftd.column:
-if: { ftd.device != "mobile" }
-children: $chapter.container
-
--- end: ftd.column
-
--- end: ftd.column
-
--- ftd.column:
-if: { ftd.device == "mobile" }
+wrapper: $chapter.wrapper
+extra-headers: $chapter.extra-headers
 
 -- chapter-mobile: $chapter.title
-if: $chapter.is-mobile
-body: $chapter.body
+if: { ftd.device == "mobile" }
 button: $chapter.button
+body: $chapter.body
 $status: $chapter.status
 toc: $chapter.toc
 sections: $chapter.sections
@@ -186,20 +235,18 @@ current-section: $chapter.current-section
 current-subsection: $chapter.current-subsection
 current-page: $chapter.current-page
 sub-sections: $chapter.sub-sections
-right-sidebar: $chapter.sidebar
+$right-sidebar: $chapter.sidebar
 show-chapter-button: $chapter.show-chapter-button
-
--- ftd.column:
-if: { ftd.device == "mobile" }
-children: $chapter.container
-
--- end: ftd.column
-
--- end: ftd.column
+wrapper: $chapter.wrapper
+extra-headers: $chapter.extra-headers
 
 -- end: ftd.column
 
 -- end: chapter
+
+
+
+
 
 
 
@@ -216,11 +263,11 @@ optional fpm.toc-item current-section:
 optional fpm.toc-item current-page:
 optional fpm.toc-item current-subsection:
 boolean show-chapter-button:
-ftd.ui button:
+ftd.ui list button:
 boolean $status:
-boolean right-sidebar: false 
-append-at: wrap-page-one
-children: container
+ftd.ui list extra-headers:
+boolean $right-sidebar: false 
+children wrapper:
 
 -- ftd.column:
 width: fill-container
@@ -231,13 +278,14 @@ sub-sections: $chapter-desktop.sub-sections
 current-section: $chapter-desktop.current-section
 current-subsection: $chapter-desktop.current-subsection
 current-page: $chapter-desktop.current-page
-site-logo: $chapter-desktop.site-logo
-site-url: $chapter-desktop.site-url
-site-name: $chapter-desktop.site-name
+site-logo: $site-logo
+site-url: $site-url
+site-name: $site-name
 
 -- ftd.row:
 width: fill-container
 spacing.px: 48
+padding-horizontal.px: 25
 
 -- render-toc:
 if: { !is_empty(chapter-desktop.toc) }
@@ -245,22 +293,29 @@ toc-obj: $chapter-desktop.toc
 $status: $chapter-desktop.status
 
 -- ftd.column:
-width: fill-container
-children: $chapter-desktop.container
-min-height: fill-container
 padding-bottom.px if { chapter-desktop.status }: 400
 padding-bottom.px if { !chapter-desktop.status}: 100
-
--- end: ftd.column
+width: fill-container
+padding-vertical.px: 16
+max-width.fixed.px: 800
+align-content: top-left
+min-height.fixed.calc: 100vh
 
 -- ftd.column:
 width: fill-container
-padding-vertical.px: 16
+padding-bottom.px: 26
 
 -- ds.h0: $chapter-desktop.title
 if: { chapter-desktop.title != NULL }
 
 $chapter-desktop.body
+
+-- end: ftd.column
+
+-- ftd.column:
+children: $chapter-desktop.wrapper
+
+-- end: ftd.column
 
 -- ftd.column:
 if: { chapter-desktop.show-chapter-button }
@@ -269,7 +324,10 @@ right.px: 0
 bottom.px: 24
 background.solid: $inherited.colors.background.step-2
 
--- button: 
+-- ftd.column:
+children: $chapter-desktop.button
+
+-- end: ftd.column 
 
 -- end: ftd.column
 
@@ -278,14 +336,14 @@ if: { chapter-desktop.status }
 anchor: parent
 left.px: 0
 bottom.px: 100
-;; z-index: 99999 -- TODO FTD 0.3
+z-index: 99999
 width: fill-container
 padding-vertical.px: 24
-padding-horizontal: 24
+padding-horizontal.px:24
 border-radius.px: 8
 
 -- ftd.column:
-background-image: $assets.files.images.celebration-flower.gif
+;;background-image: $assets.files.images.celebration-flower.gif
 align-self: center
 height.fixed.px: 200
 width.fixed.px: 200
@@ -295,28 +353,43 @@ role: $inherited.types.copy-large
 color: $inherited.colors.text-strong
 align-self: center
 
--- end: ftd.row
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
 
 -- ftd.column:
-;;id: right-sidebar
-width: 450
+if: { chapter-desktop.right-sidebar }
+min-width.fixed.px: 320
 z-index: 999
-sticky: true
-top: 0
-right: 48
-height: calc 100vh - 0px
-background.solid:  $inherited.colors.background.overlay
+;;sticky: true -- TODO FTD 0.3
+top.px: 0
+right.px: 48
+min-height.fixed.calc: 100vh - 0px
+height.fixed.calc: 100% - 48px
+background.solid: $inherited.colors.background.overlay
 overflow-y: auto
-align: top-right
-margin-right: 48
-padding-left: 24
-padding-top: 16
-padding-right: 24
+align-content: top-right
+margin-right.px: 48
+padding-left.px: 24
+padding-top.px: 16
+padding-right.px: 24
 padding-bottom.px: 16
-margin-top: 25
-margin-bottom: 25
+margin-top.px: 25
+margin-bottom.px: 25
 border-radius.px: 8
-border-bottom-radius: 15
+border-bottom-left-radius.px: 15
+border-bottom-right-radius.px: 15
+children: $chapter-desktop.extra-headers
+
+-- end: ftd.column
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: chapter-desktop
 
 
 
@@ -327,127 +400,144 @@ border-bottom-radius: 15
 
 
 
--- ftd.column chapter-mobile:
+-- component chapter-mobile:
 optional caption title:
 optional body body:
 fpm.toc-item list toc: 
 fpm.toc-item list sections:
+ftd.ui list extra-headers:
 fpm.toc-item list sub-sections:
 optional fpm.toc-item current-section:
 optional fpm.toc-item current-page:
 optional fpm.toc-item current-subsection:
 boolean show-chapter-button:
-ftd.ui button:
-width: fill-container
-open: true
-append-at: page-wrap-mobile
+ftd.ui list button:
 optional boolean $status: 
-booelan right-sidebar: false
+children wrapper:
+optional boolean $right-sidebar: 
 
---- h.header: 
-sections: $sections
-sub-sections: $sub-sections
-current-section: $current-section
-current-subsection: $current-subsection
-current-page: $current-page
+-- ftd.column:
+width: fill-container
+
+-- h.header: 
+sections: $chapter-mobile.sections
+sub-sections: $chapter-mobile.sub-sections
+current-section: $chapter-mobile.current-section
+current-subsection: $chapter-mobile.current-subsection
+current-page: $chapter-mobile.current-page
 site-logo: $site-logo
 site-url: $site-url
-toc: $toc
+toc: $chapter-mobile.toc
 site-name: $site-name
 
---- ftd.column:
-if: $show-chapter-button
+-- ftd.column:
+if: {chapter-mobile.show-chapter-button}
 anchor: parent
-right: 24
-bottom: 24
+right.px: 24
+bottom.px: 24
 
---- button: 
+-- ftd.column:
+children: $chapter-mobile.button
 
+-- end: ftd.column 
 
---- container: ftd.main
+-- end: ftd.column
 
---- ftd.column:
-id: page-wrap-mobile
+-- ftd.column:
 width: fill-container
-align: top
-min-height: calc 100vh
-height: fill
-padding-horizontal: 20
-padding-top: 20
+align-content: top-left
+min-height.fixed.calc: 100vh
+height: fill-container
+padding-horizontal.px: 20
+padding-top.px: 20
 padding-bottom.px: 84
 
-
---- ftd.row:
+-- ftd.row:
 width: fill-container
-id: heading-container
+;;id: heading-container
 
---- ds.h1: $title
-if: $title is not null
+-- ds.h1: $chapter-mobile.title
+if: {chapter-mobile.title !=  NULL}
 
---- container: heading-container
+-- ftd.column:
+if:{chapter-mobile.right-sidebar}
+align-content: center
+padding-top.px: 8
 
---- ftd.column:
-if: $right-sidebar
-align: center
-padding-top: $fpm.space.space-2
-
---- ftd.image:
+-- ftd.image:
 src: $assets.files.images.info-icon.svg
-width: 36
-$on-click$: toggle $open-right-sidebar-info
+width.fixed.px: 36
+$on-click$: $ftd.toggle($a=$open-right-sidebar-info)
 
---- container: page-wrap-mobile
+-- end: ftd.column
 
---- ds.markdown:
-if: $body is not null
+-- end: ftd.row
 
-$body
+-- ds.markdown:
+if: {chapter-mobile.body != NULL}
 
---- container: ftd.main
+$chapter-mobile.body
 
---- ftd.column:
-if: $open-right-sidebar-info
+-- ftd.column:
+children: $chapter-mobile.wrapper
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- ftd.column:
+if: {open-right-sidebar-info}
 anchor: parent
-top: 0
-bottom: 0
-left: 0
-right: 0
+top.px: 0
+bottom.px: 0
+left.px: 0
+right.px: 0
 background.solid:$inherited.colors.background.overlay
 z-index: 1
 width: fill-container
-$on-click$: $open-right-sidebar-info = false
+$on-click$: $ftd.set-bool($a = $open-right-sidebar-info, v = false)
 
---- ftd.column:
+-- ftd.column:
 width: fill-container
 
---- ftd.image:
+-- ftd.image:
 src: $assets.files.images.cross.svg
-height: 16
+height.fixed.px: 16
 width: auto
-margin-top: 30
-margin-left: 16
-$on-click$: $open-right-sidebar-info = false 
+margin-top.px: 30
+margin-left.px: 16
+$on-click$: $ftd.set-bool($a = $open-right-sidebar-info, v = true)
 
---- container: ftd.main
+-- end: ftd.column
 
---- ftd.column:
-if: $open-right-sidebar-info
-width: calc 100% - 48px
-height: calc 100vh - 0px
+-- end: ftd.column
+
+-- ftd.column:
+if: {open-right-sidebar-info}
+width.fixed.calc:  100% - 48px
+height.fixed.calc:  100vh - 0px
 overflow-y: auto
-align: top-right
-padding-top:$fpm.space.space-5
+align-content: top-right
+padding-top.px: 20
 anchor: parent
-right: 0
-top: 0
+right.px: 0
+top.px: 0
 background.solid: $inherited.colors.background.step-1
 z-index: 99
 
---- ftd.column:
-id: right-sidebar-mobile
+-- ftd.column:
+;;id: right-sidebar-mobile
 width: fill-container
 padding-vertical.px: 24
-padding-horizontal: 24
+padding-horizontal.px:24
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: chapter-mobile
 
 
 
@@ -457,30 +547,38 @@ padding-horizontal: 24
 
 
 
--- ftd.column render-toc:
+
+-- component render-toc:
 fpm.toc-item list toc-obj:
-sticky: true
-top: 0
-left: 24
-height: calc 100vh - 0px
+boolean $status: 
+
+-- ftd.column:
+;; sticky: true
+top.px: 0
+left.px: 24
+min-width.fixed.px: 280
+min-height.fixed.calc: 100vh - 0px
+height.fixed.calc: 100% - 52px
 overflow-y: auto
-width: 450
-align: top-left
-background.solid:  $inherited.colors.background.overlay
+width.fixed.px: 320
+align-content: top-left
+background.solid: $inherited.colors.background.overlay
 border-radius.px: 8
-padding-left: 24
-padding-top: 24
-padding-right: 16
+padding-left.px: 24
+padding-top.px: 16
+padding-right.px: 16
 padding-bottom.px: 32
-boolean $status: 
-margin-top: 25
-margin-bottom: 25
-border-bottom-radius: 15
+margin-top.px: 25
+margin-bottom.px: 25
 
---- toc-instance:
-$loop$: $toc-obj as $obj
+-- toc-instance:
+$loop$: $render-toc.toc-obj as $obj
 toc: $obj
-$status: $status
+$status: $render-toc.status
+
+-- end: ftd.column
+
+-- end: render-toc
 
 
 
@@ -491,63 +589,69 @@ $status: $status
 
 
 
--- ftd.column toc-instance:
+-- component toc-instance:
 fpm.toc-item toc:
-id: toc-instance
-boolean $status: 
+boolean $status:
 
---- ftd.row:
-if: $toc.url is not null
+-- ftd.column:
+
+-- ftd.row:
+if: {toc-instance.toc.url != NULL}
 width: fill-container
 spacing.px: 8
 
---- ftd.image:
-if: $toc.font-icon is not null
-src: $toc.font-icon
-height: 14
+-- ftd.image:
+if: {toc-instance.toc.font-icon != NULL}
+src: $toc-instance.toc.font-icon
+height.fixed.px: 14
 width: auto
 
---- ftd.text: 
-if: $toc.url is not null
-link: $toc.url
-text: $toc.title
-role: $inherited.types.fine-print
-min-width: fit-content
-margin-bottom: 16
-;margin-left: $fpm.space.space-3
+-- ftd.text:
+link: $toc-instance.toc.url
+text: $toc-instance.toc.title
+role: $inherited.types.label-small
+min-width: hug-content
+margin-bottom.px: 16
 color: $inherited.colors.text
-color if $toc.is-active: $inherited.colors.cta-primary.base
+color if {toc-instance.toc.is-active}: $inherited.colors.cta-primary.base
 
---- container: ftd.main
+-- end: ftd.row
 
---- ftd.row:
-if: $toc.url is null
+-- ftd.row:
+if: {toc-instance.toc.url == NULL}
 width: fill-container
 spacing.px: 8
 
---- ftd.image:
-if: $toc.font-icon is not null
-src: $toc.font-icon
-height: 14
+-- ftd.image:
+if: {toc-instance.toc.font-icon != NULL}
+src: $toc-instance.toc.font-icon
+height.fixed.px: 14
 width: auto
 
---- ftd.text:
-text: $toc.title
-role: $inherited.types.fine-print
-min-width: fit-content
-margin-bottom: 16
+-- ftd.text: 
+text: $toc-instance.toc.title
+;;role: $inherited.types.label-small
+min-width: hug-content
+margin-bottom.px: 16
 color: $inherited.colors.text
-color if $toc.is-active: $inherited.colors.cta-primary.base
-padding-left: 10
+margin-left.px: 12
+color if {toc-instance.toc.is-active}: $inherited.colors.cta-primary.base
 
+-- end: ftd.row
 
---- container: ftd.main
+-- ftd.column:
+margin-left.px: 12
 
-
---- childrens:
-$loop$: $toc.children as $obj
+-- childrens:
+if: {!is_empty(toc-instance.toc.children)}
+$loop$: $toc-instance.toc.children as $obj
 toc: $obj
-$status: $status
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: toc-instance
 
 
 
@@ -558,63 +662,62 @@ $status: $status
 
 
 
--- ftd.column childrens:
+-- component childrens:
 fpm.toc-item toc:
-boolean $status: 
 
---- ftd.row:
-if: $toc.url is not null
+-- ftd.column:
+
+-- ftd.row:
+if: {childrens.toc.url != NULL}
 width: fill-container
 spacing.px: 8
 
---- ftd.image:
-if: $toc.font-icon is not null
-src: $toc.font-icon
-height: 14
+-- ftd.image:
+if: {childrens.toc.font-icon != NULL}
+src: $childrens.toc.font-icon
+height.fixed.px: 14
 width: auto
 
---- ftd.text: 
-link: $toc.url
-text: $toc.title
-role: $inherited.types.fine-print
-min-width: fit-content
-margin-bottom: 16
-margin-left: $fpm.space.space-3
+-- ftd.text: 
+link: $childrens.toc.url
+text: $childrens.toc.title
+role: $inherited.types.label-small
+min-width: hug-content
+margin-bottom.px: 16
 color: $inherited.colors.text
-color if $toc.is-active: $inherited.colors.cta-primary.base
+color if {childrens.toc.is-active}: $inherited.colors.cta-primary.base
 
---- container: ftd.main
+-- end: ftd.row
 
---- ftd.row:
-if: $toc.url is  null
+-- ftd.row:
+if: {childrens.toc.url == NULL}
 width: fill-container
 spacing.px: 8
 
---- ftd.image:
-if: $toc.font-icon is not null
-src: $toc.font-icon
-height: 14
-width: auto
+-- ftd.image:
+if: {childrens.toc.font-icon != NULL}
+src: $childrens.toc.font-icon
+height.fixed.px: 14
+width: fill-container
 
---- ftd.text: 
-text: $toc.title
-role: $inherited.types.fine-print
-min-width: fit-content
-margin-bottom: 16
-margin-left: $fpm.space.space-3
+-- ftd.text: 
+text: $childrens.toc.title
+;;role: $inherited.types.label-small
+min-width: hug-content
+margin-bottom.px: 16
 color: $inherited.colors.text
-color if $toc.is-active: $inherited.colors.cta-primary.base
+color if {childrens.toc.is-active}: $inherited.colors.cta-primary.base
 
+-- end: ftd.row
 
---- container: ftd.main
-
---- ftd.column:
-margin-left: $fpm.space.space-3
-
---- childrens:
-$loop$: $toc.children as $obj
+-- childrens:
+if: {!is_empty(childrens.toc.children)}
+$loop$: $childrens.toc.children as $obj
 toc: $obj
 
+-- end: ftd.column
+
+-- end: childrens
 
 
 
@@ -624,60 +727,83 @@ toc: $obj
 
 
 
--- ftd.column task:
+
+-- component task:
 optional caption title:
 optional body body:
+boolean $status: false
+children task-wrap:
+
+-- ftd.ui list task.button: 
+
+-- what-are-task-button: Done
+
+-- end: task.button
+
+-- ftd.column:
 width: fill-container
-append-at: task-wrap
-ftd.ui button: what-are-task-button:
-boolean $status:false
-margin-top: $fpm.space.space-6
-margin-bottom: $fpm.space.space-6
-padding-horizontal: $fpm.space.space-6
-padding-top: $fpm.space.space-6
+margin-top.px: 24
+margin-bottom.px: 24
+padding-horizontal.px:24
+padding-top.px:24
 padding-bottom.px: 76
 border-radius.px: 6
 background.solid: $inherited.colors.background.step-1
-background-color if $status:  $inherited.colors.cta-tertiary.base
-open: true
+background.solid if {task.status}: $inherited.colors.cta-tertiary.base
 
---- ftd.column:
+-- ftd.column:
 anchor: parent
-right: 24
-bottom: 24
+right.px: 24
+bottom.px: 24
 
---- button: 
+-- ftd.column:
+children: $task.button
 
---- container: ftd.main
+-- end: ftd.column 
 
---- ftd.column:
+-- end: ftd.column
+
+-- ftd.column:
 width: fill-container
-id: task-wrap
+;;children: $task.task-wrap
 
---- ftd.row:
+-- ftd.row:
 width: fill-container
-if: $title is not null
+if: {task.title != NULL}
 color: $inherited.colors.text-strong
 
---- ftd.image:
+-- ftd.image:
 src: $assets.files.images.task-icon.svg
-width: 32
+width.fixed.px: 32
 height: auto
-align: center
-margin-right: 16
+;;align-content: center
+margin-right.px: 16
 
---- ftd.text: $title
+-- ftd.text: $task.title
+if: { task.title != NULL}
 role: $inherited.types.heading-large
 color: $inherited.colors.custom.three
 
---- container: task-wrap
+-- end: ftd.row
 
---- ftd.text:
-text: $body
+-- ftd.text:
+if: { task.body != NULL}
+text: $task.body
 role: $inherited.types.copy-relaxed
 color: $inherited.colors.text
-margin-bottom: 24
-margin-top: 24
+margin-bottom.px: 24
+margin-top.px: 24
+
+-- ftd.column:
+children: $task.task-wrap
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: task
 
 
 
@@ -688,59 +814,79 @@ margin-top: 24
 
 
 
--- ftd.column lesson:
+-- component lesson:
 optional caption title:
 optional body body:
-width: fill-container
-append-at: lesson-wrap
-ftd.ui button: what-are-lesson-button:
 boolean $status: false
-margin-top: $fpm.space.space-6
-margin-bottom: $fpm.space.space-6
-padding-horizontal: $fpm.space.space-6
-padding-top: $fpm.space.space-6
+children lesson-wrap:
+
+-- ftd.ui list lesson.button: 
+
+-- what-are-lesson-button: Done
+
+-- end: lesson.button
+
+-- ftd.column:
+width: fill-container
+margin-top.px: 24
+margin-bottom.px: 24
+padding-horizontal.px: 24
+padding-top.px: 24
 padding-bottom.px: 76
 border-radius.px: 6
 background.solid: $inherited.colors.background.step-1
-background-color if $status:  $inherited.colors.cta-tertiary.base
-open: true
+background.solid if {lesson.status}: $inherited.colors.cta-tertiary.base
 
---- ftd.column:
+-- ftd.column:
 anchor: parent
-right: 24
-bottom: 24
+right.px: 24
+bottom.px: 24
 
---- button: 
+-- ftd.column:
+children: $lesson.button
 
---- container: ftd.main
+-- end: ftd.column 
 
---- ftd.column:
+-- end: ftd.column
+
+-- ftd.column:
 width: fill-container
-id: lesson-wrap
 
---- ftd.row:
+-- ftd.row:
 width: fill-container
-if: $title is not null
+if: {lesson.title != NULL}
+color: $inherited.colors.text-strong
 
---- ftd.image:
+-- ftd.image:
 src: $assets.files.images.lesson-2-icon.svg
-width: 32
+width.fixed.px: 32
 height: auto
-align: center
-margin-right: 16
+;;align-content: center
+margin-right.px: 16
 
---- ftd.text: $title
+-- ftd.text: $lesson.title
 role: $inherited.types.heading-large
 color: $inherited.colors.custom.two
 
---- container: lesson-wrap
+-- end: ftd.row
 
---- ftd.text:
-text: $body
+-- ftd.text:
+text: $lesson.body
 role: $inherited.types.copy-relaxed
 color: $inherited.colors.text
-margin-bottom: 24
-margin-top: 24
+margin-bottom.px: 24
+margin-top.px: 24
+
+-- ftd.column:
+children: $lesson.lesson-wrap
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: lesson
 
 
 
@@ -751,24 +897,28 @@ margin-top: 24
 
 
 
--- ftd.text understood: $title
+-- component understood:
 caption title:
-optional boolean $lesson-status:
-optional boolean $task-status:
-optional boolean $chapter-status:
+boolean $lesson-status: false
+boolean $task-status: false
+boolean $chapter-status: false
+
+-- ftd.text: $understood.title
 padding-vertical.px: 8
-padding-horizontal: 16
+padding-horizontal.px:16
 border-radius.px: 5
 background.solid: $inherited.colors.cta-primary.hover
-;background-color if $MOUSE-IN: $inherited.colors.cta-primary.base
+;;background.solid if $MOUSE-IN: $inherited.colors.cta-primary.base
 role: $inherited.types.copy-large
 color: $inherited.colors.text-strong
-background-color if $lesson-status: $inherited.colors.background.step-2
-background-color if $task-status: $inherited.colors.background.step-2
-background-color if $chapter-status: $inherited.colors.background.step-2
-color if $lesson-status: $inherited.colors.text
-color if $task-status: $inherited.colors.text
-color if $chapter-status: $inherited.colors.text
+background.solid if {understood.lesson-status}: $inherited.colors.background.step-2
+background.solid if {understood.task-status}: $inherited.colors.background.step-2
+background.solid if {understood.chapter-status}: $inherited.colors.background.step-2
+color if {understood.lesson-status}: $inherited.colors.text
+color if {understood.task-status}: $inherited.colors.text
+color if {understood.chapter-status}: $inherited.colors.text
+
+-- end: understood
 
 
 
@@ -779,14 +929,20 @@ color if $chapter-status: $inherited.colors.text
 
 
 
--- ftd.column render-toc-mobile: 
+-- component render-toc-mobile: 
 fpm.toc-item list toc-obj:
 boolean $status: 
 
---- toc-instance:
-$loop$: $toc-obj as $obj
+-- ftd.column:
+
+-- toc-instance:
+$loop$: $render-toc-mobile.toc-obj as $obj
 toc: $obj
-$status: $status
+$status: $render-toc-mobile.status
+
+-- end: ftd.column
+
+-- end: render-toc-mobile
 
 
 
@@ -797,96 +953,111 @@ $status: $status
 
 
 
--- ftd.column window-popup:
+-- component window-popup:
+
+-- ftd.column:
 anchor: window
-top: 0
-bottom: 0
-left: 0
-right: 0
-width: fill-container
-height: fill
-background.solid:  $inherited.colors.background.overlay
-z-index: 99999
+top.px: 0
+bottom.px: 0
+left.px: 0
+right.px: 0
+width.px: fill-container
+height: fill-container
+background.solid: $inherited.colors.background.overlay
+index: 99999
 
---- ftd.image:
+-- ftd.image:
 src: $assets.files.images.cross.svg
-height: 24
+height.fixed.px: 24
 width: auto
 anchor: window
-right: 16
-top: 20
+right.px: 16
+top.px: 20
 $on-click$: $what-are-chapter-completed=false
 ;$on-click$: $pop-up-status=false
 
---- container: ftd.main
-
---- ftd.row:
-if: not $is-mobile
+-- ftd.row:
+if: {ftd.device != "mobile"}
 width: fill-container
-height: fill
+height: fill-container
 
---- ftd.column:
+-- ftd.column:
 width: fill-container
-align: center
+align-content: center
 
---- ftd.column:
+-- ftd.column:
 background.solid: $inherited.colors.background.base
-width: 614
+width.fixed.px: 614
 border-width: 1
 padding-vertical.px: 35
-padding-horizontal: 32
-shadow-offset-x: 3
-shadow-offset-y: 4
-shadow-size: 1
-shadow-blur: 4
-border-top: 3
+padding-horizontal.px: 32
+;;shadow-offset-x: 3
+;;shadow-offset-y: 4
+;;shadow-size: 1
+;;shadow-blur: 4
+border-top.px: 3
 border-radius.px: 8
 border-color: $inherited.colors.warning.text
-align: center
+align-content: center
 
---- ftd.text: CONGRATULATIONS
+-- ftd.text: CONGRATULATIONS
 text-align: center
 role: $inherited.types.heading-medium
 color: $inherited.colors.text-strong
 width: fill-container
 padding-bottom.px: 90
 
---- container: ftd.main
+-- end: ftd.column
 
---- ftd.row:
-if:  $is-mobile
+-- end: ftd.column
+
+-- end: ftd.row
+
+-- ftd.row:
+if:{ ftd.device == "mobile"}
 width: fill-container
 height: fill
 
---- ftd.column:
+-- ftd.column:
 width: fill-container
-align: center
+align-content: center
 
---- ftd.column:
+-- ftd.column:
 background.solid: $inherited.colors.background.base
-width: 200
-border-width: 1
+width.fixed.px: 200
+border-width.px: 1
 padding-vertical.px: 35
-padding-horizontal: 32
-shadow-offset-x: 3
-shadow-offset-y: 4
-shadow-size: 1
-shadow-blur: 4
-border-top: 3
+padding-horizontal.px: 32
+;;shadow-offset-x: 3
+;;shadow-offset-y: 4
+;;shadow-size: 1
+;;shadow-blur: 4
+border-top.px: 3
 border-radius.px: 8
 border-color: $inherited.colors.warning.text
-align: center
+align-content: center
 
---- ftd.column:
-align: center
+-- ftd.column:
+align-content: center
 
---- ftd.text: CONGRATULATIONS
+-- ftd.text: CONGRATULATIONS
 text-align: center
 role: $inherited.types.fine-print
 color: $inherited.colors.text-strong
 width: fill-container
 padding-bottom.px: 90
 
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: window-popup
 
 
 
@@ -896,24 +1067,12 @@ padding-bottom.px: 90
 
 
 
--- ftd.column sidebar:
+
+-- component sidebar:
+
+-- ftd.column:
 width: fill-container
 
---- cbox.text-4: Need Help?
+-- end: ftd.column
 
-Please join our [Discord to ask any questions](https://discord.gg/d2MgKBybEQ)
-related to this workshop!
-
-Or just meet the others who are learning FTD like you :-)
-
-
---- cbox.info: Github Repo
-
-The code for this workshop can be found on Github:
-[ftd-lang/ftd-workshop](https://github.com/ftd-lang/ftd-workshop).
-
-
---- cbox.text-4: Join The Next Session
-
-The next remote workshop would be happening on **4th Nov 2022**. [Learn more
-here](https://fifthtry.com/events/).
+-- end: sidebar
